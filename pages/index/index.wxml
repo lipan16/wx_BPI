@@ -1,0 +1,37 @@
+<van-sticky>
+  <view class="search" style="height: {{navHeight}}px; padding-top: {{navTop}}px; width: {{menuButtonObject.left}}px;">
+    <view class="search-title" style="height: {{navHeight-navTop}}px; line-height: {{navHeight-navTop}}px;">
+      {{'未来可燃冰'}}
+    </view> 
+    <input placeholder-class="search-placeholder" style="height: {{navHeight-navTop}}px" type="text" placeholder="输入关键词搜索"
+    disabled value="{{name}}" bindinput="bindinput" bindtap="onClickSearch"></input>
+  </view>
+</van-sticky>
+
+<view class="container" style="height: calc(100vh - {{navHeight}}px)">
+
+  <view class="swiper-container">
+    <swiper class="swiper1" indicator-dots="true" indicator-active-color="#fff" autoplay circular>
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image mode="aspectFill" bindtap="onClickBanner" src="{{item.picUrl}}" />
+      </swiper-item>
+    </swiper>
+
+    <!-- <view wx:if="{{goodsDynamic && show_buy_dynamic == '1' }}" class="goodsDynamic">
+    <swiper class="swiper2" autoplay circular vertical>
+      <navigator wx:for="{{goodsDynamic}}" wx:key="index" url="{{ goodsDetailPage.url(item) }}">
+        <swiper-item>
+          <view class="goodsDynamic-item">
+            <image mode="aspectFill" src="{{item.avatarUrl}}"></image>
+            <text>{{item.nick}} 购买了 {{item.goodsName}}</text>
+          </view>
+        </swiper-item>
+      </navigator>
+    </swiper>
+    </view> -->
+  </view>
+
+  <view class="userinfo">
+    <van-button bindtap="bindTapBanner">返回banner</van-button>
+  </view>
+</view>

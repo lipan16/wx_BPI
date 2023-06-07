@@ -1,0 +1,14 @@
+<swiper class="swiper_box" bindchange="swiperchange" indicator-dots="true" indicator-active-color="#177cb0">
+  <swiper-item wx:for="{{banners}}" wx:key="id">
+    <image mode="aspectFill" src="{{item.picUrl}}" />
+  </swiper-item>
+</swiper>
+<view class="btn">
+  <van-button 
+    wx:if="{{swiperCurrent + 1 == swiperMaxNumber}}" 
+    size="small" 
+    bindtap="goToIndex"
+    round
+    color="linear-gradient(to right, #177cb0, #6149f6)"
+  >开始使用</van-button>
+</view>

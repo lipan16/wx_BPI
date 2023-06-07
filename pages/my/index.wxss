@@ -1,0 +1,38 @@
+.my{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.my-head{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar-img{
+  height: 80px;
+  width: 80px;
+}
+.nickname{
+  margin-top: 16px;
+  font-size: 28px;
+  font-weight: 600;
+}
+.my-content{
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.content{
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+.copyright{
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.version{
+  font-size: 12px;
+  margin-bottom: 8px;
+}

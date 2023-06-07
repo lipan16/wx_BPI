@@ -1,0 +1,10 @@
+{
+  "description": "专属的小程序",
+  "libVersion": "2.31.1",
+  "projectname": "BPI",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": false,
+    "bigPackageSizeSupport": false
+  }
+}
