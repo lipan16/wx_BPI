@@ -1,0 +1,20 @@
+<view class="work">
+  <text class="title">上坟</text>
+  <view class="progress">
+    <view class="title1">今天赚了</view>
+    <van-divider contentPosition="center" customStyle="width: 200px; border-color: #1989fa;">
+      <image class="img" src="../../images/default.png" alt=''></image>
+    </van-divider>
+    <view class="money">0.07</view>
+    <view>￥</view>
+    <view class="title2">距离下班</view>
+    <van-divider contentPosition="center" customStyle="width: 200px; border-color: #1989fa;">
+      <image class="img" src="../../images/default.png" alt=''></image>
+    </van-divider>
+    <view class="time">
+      123
+      时分秒
+    </view>
+  </view>
+  <view class="desc">苦</view>
+</view>

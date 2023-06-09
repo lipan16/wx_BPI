@@ -1,0 +1,36 @@
+.work {
+  padding: 40% 32rpx 0;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.progress {
+  margin-top: 16rpx;
+  padding: 20rpx 0;
+  background-color: #fff;
+  box-shadow: 0 0 18px 0 rgba(5, 5, 5, 0.15);
+  border-radius: 20rpx;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.progress .title1 {
+  font-size: 20px;
+}
+
+.progress .divider {
+  width: 200px;
+}
+
+.progress .img {
+  height: 32rpx;
+  width: 32rpx;
+}
+
+.desc {
+  text-align: center;
+  margin-top: 18rpx;
+}

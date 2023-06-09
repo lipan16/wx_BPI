@@ -2,9 +2,10 @@
   "pages": [
     "pages/banner/index",
     "pages/index/index",
-    "pages/shop-cart/index",
+    "pages/shopCart/index",
     "pages/my/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/workProgress/index"
   ],
   "tabBar": {
     "color": "#6e6d6b",
@@ -19,7 +20,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/shop-cart/index",
+        "pagePath": "pages/shopCart/index",
         "iconPath": "images/nav/cart-off.png",
         "selectedIconPath": "images/nav/cart-on.png",
         "text": "购物车"
@@ -47,7 +48,7 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-toast": "@vant/weapp/toast/index"
+    "van-divider": "@vant/weapp/divider/index"
   },
   "sitemapLocation": "sitemap.json"
 }
