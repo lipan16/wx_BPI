@@ -1,7 +1,7 @@
 <view class="my">
 <view class="my-head">
   <image class="avatar-img" src="{{ apiUserInfo.avatarUrl || '/images/default.png' }}" mode="aspectFill"></image>
-  <view class="nickname">{{apiUserInfo.nickName || 'hello lp'}}</view>
+  <view class="nickname">{{apiUserInfo.nickName || 'hello 未来可燃冰'}}</view>
 </view>
 <view class="my-content">
   <view class="content"></view>
