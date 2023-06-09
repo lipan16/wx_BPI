@@ -2,9 +2,8 @@
   <view class="search" style="height: {{navHeight}}px; padding-top: {{navTop}}px; width: {{menuButtonObject.left}}px;">
     <view class="search-title" style="height: {{navHeight-navTop}}px; line-height: {{navHeight-navTop}}px;">
       {{'未来可燃冰'}}
-    </view> 
-    <input placeholder-class="search-placeholder" style="height: {{navHeight-navTop}}px" type="text" placeholder="输入关键词搜索"
-    disabled value="{{name}}" bindinput="bindinput" bindtap="onClickSearch"></input>
+    </view>
+    <input placeholder-class="search-placeholder" style="height: {{navHeight-navTop}}px" type="text" placeholder="输入关键词搜索" disabled value="{{name}}" bindinput="bindinput" bindtap="onClickSearch"></input>
   </view>
 </van-sticky>
 
@@ -31,7 +30,10 @@
     </view> -->
   </view>
 
-  <view class="userinfo">
-    <van-button bindtap="bindTapBanner">返回banner</van-button>
+  <view class="feats">
+    <view class="feat-list" wx:for="{{feats}}" wx:key="id" bindtap="onClickFeat" data-id="{{item.id}}">
+      <image mode="aspectFill" class="feat-img" src="{{item.icon}}"></image>
+      <view class="feat-name">{{item.name}}</view>
+    </view>
   </view>
 </view>
