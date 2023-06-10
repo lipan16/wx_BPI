@@ -1,0 +1,4 @@
+<view>
+  <van-empty description="等待添加">
+  </van-empty>
+</view>

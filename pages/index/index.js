@@ -8,44 +8,48 @@ Page({
         name: '点菜',
         icon: '../../images/default.png',
         url: '',
-        isPage: true
+        type: 'page',
       },
       {
-        id: 'banner',
-        name: 'banner',
-        icon: '../../images/default.png',
-        url: '/pages/banner/index',
-        isPage: true
+        id: 'welcome',
+        name: '欢迎页',
+        icon: '../../images/svg/welcome.svg',
+        url: '/pages/welcome/index',
+        type: 'page',
       },
       {
         id: 'workProgress',
         name: '上班进度',
-        icon: '../../images/default.png',
+        icon: '../../images/svg/work.svg',
         url: '/pages/workProgress/index',
-        isPage: true
+        type: 'page',
       },
       {
-        id: 'progress2',
+        id: 'shopCar',
+        name: '购物车',
+        icon: '../../images/nav/cart-on.png',
+        url: '/pages/shopCart/index',
+        type: 'tab',
+      },
+      {
+        id: 'voucher',
+        name: '兑换券',
+        icon: '../../images/nav/voucher.png',
+        url: '/pages/voucher/index',
+        type: 'tab',
+      },
+      {
+        id: 'test1',
         name: 'test1',
         icon: '../../images/default.png',
         url: '',
-        isPage: false
-      },
-      {
-        id: 'progress3',
-        name: 'test2',
-        icon: '../../images/default.png',
-        url: '',
-        isPage: false
+        type: 'url',
       }
     ] // 功能列表
   },
   // 监听页面加载
   onLoad() {
     this.getHomeBanner()
-    if (wx.getUserProfile) {
-      this.getUserProfile()
-    }
   },
   // 监听页面显示
   onShow() {
@@ -56,20 +60,6 @@ Page({
     })
   },
 
-  // 获取数据
-  getUserProfile() {
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: res => {
-        console.log('getUserProfile', res.cloudID)
-        console.log('userInfo', res.userInfo)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
   getHomeBanner() {
     const banners = [{
         'id': 1,
@@ -104,17 +94,20 @@ Page({
   },
   onClickFeat(e) { // 点击功能
     const item = this.data.feats.find(f => f.id === e.currentTarget.dataset.id)
-    console.log(item)
-    const {
-      url,
-      isPage
-    } = item
+    const {id, url, type} = item
+    if(id === 'welcome'){
+      wx.setStorageSync('showWelcome', true)
+    }
     if (url) {
-      if (isPage) {
+      if(type === 'page'){
         wx.navigateTo({
           url
         })
-      } else {
+      } else if(type === 'tab') {
+        wx.switchTab({
+          url
+        })
+      } else{
         wx.showModal({
           title: '系统提示',
           content: '这是一个外部地址，是否跳转',
