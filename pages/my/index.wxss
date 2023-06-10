@@ -7,10 +7,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 64rpx;
 }
 .avatar-img{
   height: 80px;
   width: 80px;
+  border-radius: 50%;
 }
 .nickname{
   margin-top: 16px;
@@ -23,6 +25,7 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  padding: 0 32rpx;
 }
 .content{
   flex-grow: 1;
