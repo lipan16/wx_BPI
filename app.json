@@ -1,11 +1,12 @@
 {
   "pages": [
-    "pages/banner/index",
+    "pages/welcome/index",
     "pages/index/index",
     "pages/shopCart/index",
     "pages/my/index",
     "pages/logs/logs",
-    "pages/workProgress/index"
+    "pages/workProgress/index",
+    "pages/voucher/index"
   ],
   "tabBar": {
     "color": "#6e6d6b",
@@ -24,6 +25,12 @@
         "iconPath": "images/nav/cart-off.png",
         "selectedIconPath": "images/nav/cart-on.png",
         "text": "购物车"
+      },
+      {
+        "pagePath": "pages/voucher/index",
+        "iconPath": "images/nav/voucher_off.png",
+        "selectedIconPath": "images/nav/voucher.png",
+        "text": "兑换券"
       },
       {
         "pagePath": "pages/my/index",
@@ -48,7 +55,8 @@
   "usingComponents": {
     "van-button": "@vant/weapp/button/index",
     "van-sticky": "@vant/weapp/sticky/index",
-    "van-divider": "@vant/weapp/divider/index"
+    "van-divider": "@vant/weapp/divider/index",
+    "van-empty": "@vant/weapp/empty/index"
   },
   "sitemapLocation": "sitemap.json"
 }
