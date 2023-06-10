@@ -1,2 +1,5 @@
-<!--pages/shop-cart/index.wxml-->
-<text>pages/shop-cart/index.wxml</text>
+<import src="./component/index.wxml"/>
+
+<view class="container">
+  <template is="no-goods"></template>
+</view>
