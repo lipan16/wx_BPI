@@ -26,8 +26,17 @@
 }
 
 .progress .img {
-  height: 32rpx;
-  width: 32rpx;
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.progress .money {
+  font-size: 16px;
+  color: #e6197f;
+}
+
+.progress .title2 {
+  font-size: 12px;
 }
 
 .desc {
