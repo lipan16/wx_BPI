@@ -1,4 +1,5 @@
 const Api = require('apifm-wxapi')
+const CONFIG = require('../../config')
 
 Page({
   data: {
@@ -48,7 +49,7 @@ Page({
   },
   getBanners(){
     Api.banners({type: 'app'}).then(res => {
-      if (res.code == 0) {
+      if (res.code == CONFIG.apiSuccess) {
         this.setData({
           banners: res.data,
         })
