@@ -1,7 +1,10 @@
+const Api = require('apifm-wxapi')
+const CONFIG = require('config.js')
+
 App({
   onLaunch() {
     const that = this
-    
+    Api.init(CONFIG.subDomain)
     // 检测新版本
     const updateManager = wx.getUpdateManager()
     updateManager.onUpdateReady(function () {
