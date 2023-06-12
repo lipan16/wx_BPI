@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@vant/weapp": "^1.10.18",
+    "apifm-wxapi": "^3.63.0",
     "moment": "^2.29.4"
   }
 }
