@@ -5,7 +5,7 @@
 </swiper>
 <view class="btn">
   <van-button 
-    wx:if="{{swiperCurrent + 1 == swiperMaxNumber}}" 
+    wx:if="{{swiperCurrent + 1 == banners.length}}" 
     size="small" 
     bindtap="goToIndex"
     round
