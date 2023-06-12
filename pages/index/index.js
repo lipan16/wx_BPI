@@ -1,3 +1,4 @@
+const Api = require('apifm-wxapi')
 const APP = getApp()
 
 Page({
@@ -50,6 +51,9 @@ Page({
   // 监听页面加载
   onLoad() {
     this.getHomeBanner()
+    Api.goodsCategoryV2().then(res => {
+      console.log(res.data)
+    })
   },
   // 监听页面显示
   onShow() {
@@ -60,22 +64,14 @@ Page({
     })
   },
 
+  // 获取首页轮播图
   getHomeBanner() {
-    const banners = [{
-        'id': 1,
-        'picUrl': 'https://dcdn.it120.cc/2019/12/29/8396f65d-d615-46d8-b2e5-aa41820b9fe5.png'
-      },
-      {
-        'id': 2,
-        'picUrl': 'https://dcdn.it120.cc/2019/12/29/daca65ee-4347-4792-a490-ccbac4b3c1d7.png'
-      },
-      {
-        'id': 3,
-        'picUrl': 'https://dcdn.it120.cc/2019/12/29/2e79921a-92b3-4d1d-8182-cb3d524be5fb.png'
+    Api.banners({type: 'index'}).then(res => {
+      if (res.code == 0) {
+        this.setData({
+          banners: res.data
+        })
       }
-    ]
-    this.setData({
-      banners
     })
   },
 
