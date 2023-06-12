@@ -3,10 +3,12 @@
     "pages/welcome/index",
     "pages/index/index",
     "pages/shopCart/index",
+    "pages/voucher/index",
     "pages/my/index",
     "pages/logs/logs",
     "pages/workProgress/index",
-    "pages/voucher/index"
+    "pages/notice/index",
+    "pages/notice/detail"
   ],
   "tabBar": {
     "color": "#6e6d6b",
@@ -53,10 +55,12 @@
     }
   },
   "usingComponents": {
+    "mp-html": "mp-html",
     "van-button": "@vant/weapp/button/index",
     "van-sticky": "@vant/weapp/sticky/index",
     "van-divider": "@vant/weapp/divider/index",
-    "van-empty": "@vant/weapp/empty/index"
+    "van-empty": "@vant/weapp/empty/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index"
   },
   "sitemapLocation": "sitemap.json"
 }
