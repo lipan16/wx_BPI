@@ -31,8 +31,13 @@
 
   <view class="feats">
     <view class="feat-list" wx:for="{{feats}}" wx:key="id" bindtap="onClickFeat" data-id="{{item.id}}">
-      <image mode="aspectFill" class="feat-img" src="{{item.icon}}"></image>
+      <image mode="aspectFill" class="feat-img" src="{{item.icon || '../../images/default.png'}}"></image>
       <view class="feat-name">{{item.name}}</view>
     </view>
   </view>
+
+  <view class="notice" wx:if="{{notice}}">
+    <van-notice-bar left-icon="volume-o" mode="link" text="{{notice.title}}" data-id="{{notice.id}}" speed="30" bind:click="gotoNotice"/>
+  </view>
+
 </view>

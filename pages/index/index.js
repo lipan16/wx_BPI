@@ -1,58 +1,20 @@
 const Api = require('apifm-wxapi')
+const CONFIG = require("../../config")
 const APP = getApp()
 
 Page({
   data: {
     banners: [], // 轮播图
-    feats: [{
-        id: 'order',
-        name: '点菜',
-        icon: '../../images/default.png',
-        url: '',
-        type: 'page',
-      },
-      {
-        id: 'welcome',
-        name: '欢迎页',
-        icon: '../../images/svg/welcome.svg',
-        url: '/pages/welcome/index',
-        type: 'page',
-      },
-      {
-        id: 'workProgress',
-        name: '上班进度',
-        icon: '../../images/svg/work.svg',
-        url: '/pages/workProgress/index',
-        type: 'page',
-      },
-      {
-        id: 'shopCar',
-        name: '购物车',
-        icon: '../../images/nav/cart-on.png',
-        url: '/pages/shopCart/index',
-        type: 'tab',
-      },
-      {
-        id: 'voucher',
-        name: '兑换券',
-        icon: '../../images/nav/voucher.png',
-        url: '/pages/voucher/index',
-        type: 'tab',
-      },
-      {
-        id: 'test1',
-        name: 'test1',
-        icon: '../../images/default.png',
-        url: '',
-        type: 'url',
-      }
-    ] // 功能列表
+    feats: [], // 功能列表
+    notice: {}, // 公告
   },
   // 监听页面加载
   onLoad() {
     this.getHomeBanner()
-    Api.goodsCategoryV2().then(res => {
+    this.getFeats()
+    Api.noticeLastOne('notice').then(res => {
       console.log(res.data)
+      this.setData({notice: res.data})
     })
   },
   // 监听页面显示
@@ -66,10 +28,22 @@ Page({
 
   // 获取首页轮播图
   getHomeBanner() {
-    Api.banners({type: 'index'}).then(res => {
-      if (res.code == 0) {
+    Api.banners({
+      type: 'index'
+    }).then(res => {
+      if (res.code == CONFIG.apiSuccess) {
         this.setData({
           banners: res.data
+        })
+      }
+    })
+  },
+  // 获取功能列表
+  getFeats() {
+    Api.goodsCategoryV2().then(res => {
+      if (res.code === CONFIG.apiSuccess) {
+        this.setData({
+          feats: res.data
         })
       }
     })
@@ -90,37 +64,37 @@ Page({
   },
   onClickFeat(e) { // 点击功能
     const item = this.data.feats.find(f => f.id === e.currentTarget.dataset.id)
-    const {id, url, type} = item
-    if(id === 'welcome'){
+    const {key, type} = item
+    if (key === '/pages/welcome/index') {
       wx.setStorageSync('showWelcome', true)
     }
-    if (url) {
-      if(type === 'page'){
-        wx.navigateTo({
-          url
-        })
-      } else if(type === 'tab') {
-        wx.switchTab({
-          url
-        })
-      } else{
-        wx.showModal({
-          title: '系统提示',
-          content: '这是一个外部地址，是否跳转',
-          success(res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            } else if (res.cancel) {
-              console.log('用户点击取消')
-            }
+    if (type === 'page') {
+      wx.navigateTo({
+        url: key
+      })
+    } else if (type === 'tab') {
+      wx.switchTab({
+        url: key
+      })
+    } else if(type === 'url'){
+      wx.showModal({
+        title: '系统提示',
+        content: '这是一个外部地址，是否跳转',
+        success(res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+            console.log(key);
+          } else if (res.cancel) {
+            console.log('用户点击取消')
           }
-        })
-      }
-    } else {
-      wx.showToast({
-        title: '奋力开发中...',
-        icon: 'none'
+        }
       })
     }
+  },
+  gotoNotice(e){ // 点击公告
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/notice/detail?id=' + id,
+    })
   }
 })

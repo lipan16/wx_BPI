@@ -11,6 +11,7 @@
   background-color: white;
   align-items: center;
 }
+
 .search-title {
   width: 5em;
   flex-shrink: 0;
@@ -22,6 +23,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 .search input {
   flex-grow: 1;
   display: block;
@@ -32,6 +34,7 @@
   font-size: 12px;
   margin-right: 8px;
 }
+
 .search-placeholder {
   font-size: 14px;
   color: #A9A6A6;
@@ -40,45 +43,51 @@
 .container {
   box-sizing: border-box;
   margin-top: 16rpx;
+  padding: 0 32rpx;
 }
 
 .swiper-container {
-  width: 750rpx;
   position: relative;
   z-index: 1;
+  width: 686rpx;
 }
-.swiper-container .swiper1 {
-  padding: 8rpx 16rpx;
-  width: 718rpx;
-}
+
 .swiper-container .swiper1 image {
   width: 100%;
   height: 100%;
-  border-radius: 16rpx;
+  border-radius: 32rpx;
 }
 
-.feats{
+.feats {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 20rpx;
-  padding: 20rpx;
+  margin: 32rpx 0 20rpx;
+  padding-bottom: 20rpx;
   background-color: #fff;
   box-shadow: 0px 0px 18px 0px rgba(5, 5, 5, 0.15);
   border-radius: 10px;
 }
-.feat-list{
+
+.feat-list {
   width: 25%;
   margin-top: 20rpx;
   text-align: center;
   display: inline-block;
   overflow: hidden;
 }
-.feat-list .feat-img{
+
+.feat-list .feat-img {
   width: 100rpx;
   height: 100rpx;
+  border-radius: 16rpx;
 }
-.feat-list .feat-name{
+
+.feat-list .feat-name {
   font-size: 24rpx;
   text-align: center;
+}
+
+.notice {
+  align-items: center;
 }
