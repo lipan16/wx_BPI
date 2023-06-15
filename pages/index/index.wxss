@@ -91,3 +91,6 @@
 .notice {
   align-items: center;
 }
+.notice  .van-notice-bar__right-icon{
+  top: 12px;
+}
