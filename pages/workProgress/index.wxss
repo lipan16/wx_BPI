@@ -18,7 +18,7 @@
 }
 
 .progress .title1 {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .progress .divider {
@@ -31,13 +31,19 @@
 }
 
 .progress .money {
-  font-size: 16px;
+  font-size: 24px;
   color: #e6197f;
 }
 
 .progress .title2 {
   font-size: 12px;
 }
+
+.progress .time {
+  font-size: 24px;
+  color: #ee79b4;
+}
+
 
 .desc {
   text-align: center;
