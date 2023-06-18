@@ -4,7 +4,9 @@ const CONFIG = require('config.js')
 App({
   onLaunch() {
     const that = this
+    // 初始化请求
     Api.init(CONFIG.subDomain)
+
     // 检测新版本
     const updateManager = wx.getUpdateManager()
     updateManager.onUpdateReady(function () {
@@ -56,7 +58,18 @@ App({
       }
     })
 
-    // ---------------检测navbar高度
+    // 获取系统变量
+    Api.queryConfigBatch('appName,version,description').then(res => {
+      if(res.code === CONFIG.apiSuccess){
+        const config = {}
+        res.data.forEach(m => {
+          config[m.key] = m.value
+        })
+        wx.setStorageSync('config', config)
+      }
+    })
+
+    // 检测navbar高度
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     console.log("小程序胶囊信息", menuButtonObject)
     wx.getSystemInfo({
