@@ -1,0 +1,39 @@
+<view class="title">欢迎</view>
+
+<view class="menu">
+  <view class="menu-category">
+    <van-sidebar>
+      <van-sidebar-item wx:for="{{categories}}" wx:key="id" title="{{item.name}}" badge="{{ item.badge ? item.badge : '' }}" data-id="{{index}}" bind:click="onCLickCategory" />
+    </van-sidebar>
+  </view>
+  <scroll-view class="menu-goods"	scroll-y="true" scroll-top="{{scrolltop}}" bindscrolltolower="_onReachBottom">
+    <van-empty wx:if="{{!goods || goods.length == 0}}" description="暂无商品" />
+    <van-card
+      wx:for="{{goods}}" wx:key="id"
+      centered="true"
+      lazy-load="true"
+      title="{{item.name}}"
+      origin-price="{{ (item.originalPrice > 0 && item.originalPrice != item.minPrice) ? item.originalPrice : '' }}"
+      price="{{item.minPrice}}"
+      thumb="{{item.pic}}"
+      thumb-mode="aspectFill"
+      thumb-link="/pages/goods-details/index?id={{item.id}}"
+      tag="{{ item.badge ? item.badge : '' }}"
+    >
+      <view slot="desc" class="goods-desc">
+        <view wx:if="{{ item.kanjia }}">
+          到手价 {{ item.kanjiaPrice }} 元
+        </view>
+        <view wx:else>{{ item.characteristic }}</view>
+      </view>
+      <view slot="footer" class="goods-btn">
+        <van-button wx:if="{{ item.stores < item.minBuyNumber }}" size="small" color="#e64340" round disabled>补货中</van-button>
+        <van-button wx:elif="{{item.kanjia}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="goGoodsDetail">砍价</van-button>
+        <van-button wx:elif="{{item.propertyIds || item.hasAddition}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">选规格</van-button>
+        <van-icon wx:else name="add" color="#e64340" size="50rpx" data-idx="{{index}}" bind:click="addCart1" />
+      </view>
+    </van-card>
+  </scroll-view>
+</view>
+
+<view class="footer">diancai</view>

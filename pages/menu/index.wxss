@@ -1,0 +1,70 @@
+page {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.title{
+  padding: 16rpx;
+  font-size: 20px;
+  color: rgb(252, 35, 205);
+}
+.menu {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.menu-category {
+  width: 200rpx;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  border-right: 1px solid red;
+  background-color: #f7f8fa;
+}
+view .van-sidebar-item{
+  width: 198rpx;
+  color: rgb(106, 157, 233);
+  font-weight: 400;
+}
+view .van-sidebar-item--selected{
+  color: rgb(42, 120, 238);
+  font-weight: 600;
+}
+
+.menu-goods {
+  width: 550rpx;
+  overflow-y: scroll;
+  margin-bottom: 16rpx;
+  box-sizing: content-box;
+}
+view .van-card{
+  box-shadow: 0px 0px 18px 0px rgb(243, 230, 230, .6);
+  background-color: rgb(211, 203, 203);
+  margin: 0 32rpx 32rpx;
+  border-radius: 16rpx;
+}
+view .van-card__header .van-card__content{
+  justify-content: space-between;
+}
+view .van-card__header .van-card__content .van-card__title{
+  margin-top: 16rpx;
+  font-size: 18px;
+  font-weight: bold;
+}
+.menu-goods .goods-desc{
+  margin-top: 12rpx;
+  color: #ab69f7;
+}
+.menu-goods .goods-btn{
+  position: absolute;
+  right: 32rpx;
+  bottom: 16rpx;
+}
+
+.footer{
+  height: 88rpx;
+  background-color: #0ff;
+  box-sizing: border-box;
+  border-top: 1px solid #f00;
+}

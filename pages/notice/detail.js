@@ -6,7 +6,6 @@ Page({
   onLoad: function (options) {
     Api.noticeDetail(options.id).then(res => {
       if (res.code == CONFIG.apiSuccess) {
-        console.log('noticeDetail', res.data)
         this.setData({
           notice: res.data
         })
