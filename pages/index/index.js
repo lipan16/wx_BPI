@@ -1,15 +1,19 @@
 const Api = require('apifm-wxapi')
+const config = require('../../config')
 const CONFIG = require("../../config")
 const APP = getApp()
 
 Page({
   data: {
+    appName: '',
     banners: [], // 轮播图
     feats: [], // 功能列表
     notice: {}, // 公告
   },
   // 监听页面加载
   onLoad() {
+    const config = wx.getStorageSync('config')
+    this.setData({appName: config.appName})
     this.getHomeBanner()
     this.getFeats()
     Api.noticeLastOne('notice').then(res => {

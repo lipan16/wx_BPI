@@ -1,7 +1,7 @@
 <van-sticky>
   <view class="search" style="height: {{navHeight}}px; padding-top: {{navTop}}px; width: {{menuButtonObject.left}}px;">
     <view class="search-title" style="height: {{navHeight-navTop}}px; line-height: {{navHeight-navTop}}px;">
-      {{'未来可燃冰'}}
+      {{appName}}
     </view>
     <input placeholder-class="search-placeholder" style="height: {{navHeight-navTop}}px" type="text" placeholder="输入关键词搜索" disabled value="{{name}}" bindinput="bindinput" bindtap="onClickSearch"></input>
   </view>

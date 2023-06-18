@@ -1,6 +1,6 @@
 {
-  "description": "专属的小程序",
-  "libVersion": "2.31.1",
+  "description": "未来可燃冰的专属小程序",
+  "libVersion": "2.32.2",
   "projectname": "BPI",
   "setting": {
     "compileHotReLoad": true,
