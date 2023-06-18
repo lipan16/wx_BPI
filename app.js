@@ -59,7 +59,7 @@ App({
     })
 
     // 获取系统变量
-    Api.queryConfigBatch('appName,version,description').then(res => {
+    Api.queryConfigBatch('appName,version,description,showWelcome').then(res => {
       if(res.code === CONFIG.apiSuccess){
         const config = {}
         res.data.forEach(m => {

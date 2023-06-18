@@ -69,9 +69,7 @@ Page({
   onClickFeat(e) { // 点击功能
     const item = this.data.feats.find(f => f.id === e.currentTarget.dataset.id)
     const {key, type} = item
-    if (key === '/pages/welcome/index') {
-      wx.setStorageSync('showWelcome', true)
-    }
+
     if (type === 'page') {
       wx.navigateTo({
         url: key
