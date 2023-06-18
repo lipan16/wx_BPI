@@ -6,9 +6,10 @@
     "pages/voucher/index",
     "pages/my/index",
     "pages/logs/logs",
-    "pages/workProgress/index",
+    "pages/work-progress/index",
     "pages/notice/index",
-    "pages/notice/detail"
+    "pages/notice/detail",
+    "pages/menu/index"
   ],
   "tabBar": {
     "color": "#6e6d6b",
@@ -60,7 +61,11 @@
     "van-sticky": "@vant/weapp/sticky/index",
     "van-divider": "@vant/weapp/divider/index",
     "van-empty": "@vant/weapp/empty/index",
-    "van-notice-bar": "@vant/weapp/notice-bar/index"
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-sidebar": "@vant/weapp/sidebar/index",
+    "van-sidebar-item": "@vant/weapp/sidebar-item/index",
+    "van-card": "@vant/weapp/card/index",
+    "van-icon": "@vant/weapp/icon/index"
   },
   "sitemapLocation": "sitemap.json"
 }

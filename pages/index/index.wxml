@@ -37,7 +37,7 @@
   </view>
 
   <view class="notice" wx:if="{{notice}}">
-    <van-notice-bar left-icon="volume-o" mode="link" text="{{notice.title}}" data-id="{{notice.id}}" speed="40" bind:click="gotoNotice"/>
+    <van-notice-bar left-icon="volume-o" mode="link" text="{{notice.title || ''}}" data-id="{{notice.id}}" speed="40" bind:click="gotoNotice"/>
   </view>
 
 </view>

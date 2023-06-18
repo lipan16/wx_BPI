@@ -1,5 +1,4 @@
 const Api = require('apifm-wxapi')
-const config = require('../../config')
 const CONFIG = require("../../config")
 const APP = getApp()
 
@@ -17,7 +16,6 @@ Page({
     this.getHomeBanner()
     this.getFeats()
     Api.noticeLastOne('notice').then(res => {
-      console.log(res.data)
       this.setData({notice: res.data})
     })
   },
@@ -32,9 +30,7 @@ Page({
 
   // 获取首页轮播图
   getHomeBanner() {
-    Api.banners({
-      type: 'index'
-    }).then(res => {
+    Api.banners({type: 'index'}).then(res => {
       if (res.code == CONFIG.apiSuccess) {
         this.setData({
           banners: res.data
@@ -44,7 +40,8 @@ Page({
   },
   // 获取功能列表
   getFeats() {
-    Api.goodsCategoryV2().then(res => {
+    Api.goodsCategoryV2(0).then(res => {
+      console.log(res);
       if (res.code === CONFIG.apiSuccess) {
         this.setData({
           feats: res.data
