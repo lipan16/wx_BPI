@@ -1,4 +1,21 @@
-<view class="title">欢迎</view>
+<view class="shop">
+  <view class="shop-name">
+    <view class="name" bindtap="selectshop">{{shopInfo.info.name}}</view>
+    <view wx:if="{{ shopInfo.info.openWaimai && shopInfo.info.openZiqu }}" class="select">
+      <view class="{{distributionType == 'zq' ? 'on' : 'off'}}" data-type="zq" bindtap="changeDistributionType">自取</view>
+      <view class="{{distributionType == 'kd' ? 'on' : 'off'}}" data-type="kd" bindtap="changeDistributionType">外卖</view>
+    </view>
+  </view>
+  <view class="distance-bar">
+    <view class="distance">距离您 {{shopInfo.info.distance || 0}} 千米</view>
+    <navigator url="/pages/shop/detail?id={{shopInfo.info.id}}" hover-class="none">
+      <view class="shop-message">
+        <view class="message">查看门店信息</view>
+        <van-icon name="arrow" />
+      </view>
+    </navigator>
+  </view>
+</view>
 
 <view class="menu">
   <view class="menu-category">
@@ -21,19 +38,19 @@
       tag="{{ item.badge ? item.badge : '' }}"
     >
       <view slot="desc" class="goods-desc">
-        <view wx:if="{{ item.kanjia }}">
-          到手价 {{ item.kanjiaPrice }} 元
-        </view>
-        <view wx:else>{{ item.characteristic }}</view>
+        <view>{{ item.characteristic }}</view>
       </view>
       <view slot="footer" class="goods-btn">
-        <van-button wx:if="{{ item.stores < item.minBuyNumber }}" size="small" color="#e64340" round disabled>补货中</van-button>
-        <van-button wx:elif="{{item.kanjia}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="goGoodsDetail">砍价</van-button>
-        <van-button wx:elif="{{item.propertyIds || item.hasAddition}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">选规格</van-button>
-        <van-icon wx:else name="add" color="#e64340" size="50rpx" data-idx="{{index}}" bind:click="addCart1" />
+        <view wx:if="{{item.stores < item.minBuyNumber}}" class="btn disable" >补货中</view>
+        <view wx:elif="{{item.propertyIds || item.hasAddition}}" class="btn" data-index="{{index}}" bindtap="selectSpecification">选规格</view>
+        <view wx:else class="icon">
+          <van-icon name="minus" color="#e64340" size="40rpx" data-index="{{index}}" bind:click="addToCart" />
+          <span>12</span>
+          <van-icon name="add" color="#e64340" size="40rpx" data-index="{{index}}" bind:click="addToCart" />
+        </view>
       </view>
     </van-card>
   </scroll-view>
 </view>
 
-<view class="footer">diancai</view>
+<view class="footer">diancan</view>

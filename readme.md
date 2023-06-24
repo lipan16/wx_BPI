@@ -25,4 +25,7 @@
 | goodsCategoryV2 | 商城管理 ---> 商品分类 | 用于配置功能、点菜菜单分类 |
 | goodsv2 | 商城管理 ---> 商品管理 | 菜单分类的列表 |
 | shippingCarInfoAddItem |  | 加入购物车 |
+| shippingCarInfo |  | 读取购物车数据 |
+| shippingCarInfoRemoveItem |  | 删除购物车商品 |
+| shippingCarInfoModifyNumber |  | 修改购物车商品数量 |
 
