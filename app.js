@@ -1,5 +1,6 @@
 const Api = require('apifm-wxapi')
 const CONFIG = require('config.js')
+const AUTH = require('utils/auth')
 
 App({
   onLaunch() {
@@ -87,16 +88,14 @@ App({
         console.log(err);
       }
     })
+  },
 
-    // 登录
-    wx.login({
-      success: res => {
-        console.log('login res: ', JSON.stringify(res))
-        if (res.code) {
-          // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        } else {
-          console.error('登录失败！' + res.errMsg)
-        }
+  onShow(e){
+    AUTH.checkHasLogined().then(isLogined => { // 检查登录状态
+      if (isLogined) {
+        AUTH.authorize().then(res => { // 授权
+          console.log('authorize', res);
+        })
       }
     })
   },

@@ -45,6 +45,7 @@ Page({
 
   // 菜单内容 滚动到底部/右边时触发
   _onReachBottom() {
+    console.log('_onReachBottom');
     this.data.page++
     this.getGoodsList()
   },
@@ -78,7 +79,7 @@ Page({
   },
 
   // 加入购物车
-  addCart1(){
-
+  async addCart1(){
+    Api.shippingCarInfoAddItem()
   },
 })

@@ -41,7 +41,6 @@ Page({
   // 获取功能列表
   getFeats() {
     Api.goodsCategoryV2(0).then(res => {
-      console.log(res);
       if (res.code === CONFIG.apiSuccess) {
         this.setData({
           feats: res.data

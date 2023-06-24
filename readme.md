@@ -16,10 +16,13 @@
 #### api指引
 | api             | 路径                     | 备注                     |
 | --------------- | ------------------------ | ------------------------ |
+| authorize         |  | 授权获取token |
+| checkToken         |  | 检测token是否有效 |
 | queryConfigBatch         | 系统设置 ---> 系统参数 | 获取系统参数 |
 | banners         | 系统设置 ---> banner管理 | 类型：type: [app, index] |
 | noticeLastOne   | CMS模块 ---> 公告管理    | 获取最新的通知           |
 | noticeDetail    | CMS模块 ---> 公告管理    | 通知详情                 |
 | goodsCategoryV2 | 商城管理 ---> 商品分类 | 用于配置功能、点菜菜单分类 |
 | goodsv2 | 商城管理 ---> 商品管理 | 菜单分类的列表 |
+| shippingCarInfoAddItem |  | 加入购物车 |
 
