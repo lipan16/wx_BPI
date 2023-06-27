@@ -127,10 +127,16 @@ view .van-card__header .van-card__content .van-card__title{
 .menu-goods .goods-btn .disable{
   opacity: 0.5;
 }
+.menu-goods .goods-btn .icon{
+  display: flex;
+  align-items: center;
+}
+.menu-goods .goods-btn .icon .num{
+  margin: 0 8rpx;
+  font-size: 14px;
+}
 
 .footer{
-  height: 88rpx;
-  background-color: #0ff;
+  height: 100rpx;
   box-sizing: border-box;
-  border-top: 1px solid #f00;
 }

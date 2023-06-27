@@ -11,7 +11,7 @@ Page({
     categories: [], // 菜单分类 goodsCategoryV2 69049
     categorySelected: {}, // 选中的菜单分类
     goods: [], // 菜品列表
-    shippingCarInfo: {}, // 购物车
+    shoppingCarInfo: {}, // 购物车
   },
 
   // 生命周期函数--监听页面加载
@@ -21,7 +21,7 @@ Page({
   },
   // 生命周期函数--监听页面显示
   onShow() {
-    this.shippingCarInfo() // 获取购物车信息
+    this.getShoppingCarInfo() // 获取购物车信息
   },
 
   changeDistributionType(e){ // 切换配送方式
@@ -113,15 +113,15 @@ Page({
 
 
   // 读取购物车数据
-  async shippingCarInfo() {
+  async getShoppingCarInfo() {
     const res = await Api.shippingCarInfo(wx.getStorageSync('token'))
     if (res.code == 0) {
       this.setData({
-        shippingCarInfo: res.data
+        shoppingCarInfo: res.data
       })
     } else {
       this.setData({
-        shippingCarInfo: null,
+        shoppingCarInfo: null,
         showCartPop: false
       })
     }
@@ -131,7 +131,7 @@ Page({
   processBadge() {
     const categories = this.data.categories
     const goods = this.data.goods
-    const shippingCarInfo = this.data.shippingCarInfo
+    const shoppingCarInfo = this.data.shoppingCarInfo
     if (!categories || !goods ) {
       return
     }
@@ -141,8 +141,8 @@ Page({
     goods.forEach(ele => {
       ele.badge = 0
     })
-    if (shippingCarInfo) {
-      shippingCarInfo.items.forEach(ele => {
+    if (shoppingCarInfo) {
+      shoppingCarInfo.items.forEach(ele => {
         if (ele.categoryId) { // 计算分类数量
           const category = categories.find(a => {
             return a.id == ele.categoryId
@@ -171,21 +171,29 @@ Page({
   // 选规格
   selectSpecification(e){
     const token = wx.getStorageSync('token')
-    const index = e.currentTarget.dataset.index
-    const item = this.data.goods[index]
-    console.log(index);
+    const item = this.data.goods.find(f => f.id === e.currentTarget.dataset.id)
+    console.log(item);
   },
   // 加入购物车
   async addToCart(e){
     const token = wx.getStorageSync('token')
-    const index = e.currentTarget.dataset.index
-    const item = this.data.goods[index]
+    const item = this.data.goods.find(f => f.id === e.currentTarget.dataset.id)
+    if (!item) {
+      return
+    }
+    if (item.stores <= 0) {
+      wx.showToast({
+        title: '已售罄~',
+        icon: 'none'
+      })
+      return
+    }
     wx.showLoading({
       title: '',
     })
-    let number = item.minBuyNumber // 加入购物车的数量
-    if (this.data.shippingCarInfo && this.data.shippingCarInfo.items) {
-      const goods = this.data.shippingCarInfo.items.find(ele => {return ele.goodsId === item.id})
+    let number = item.minBuyNumber // 加入购物车的最小数量
+    if (this.data.shoppingCarInfo && this.data.shoppingCarInfo.items) { // 在购物车中每次只能+1
+      const goods = this.data.shoppingCarInfo.items.find(ele =>ele.goodsId === item.id)
       if (goods) {
         number = 1
       }
@@ -203,42 +211,40 @@ Page({
       })
       return
     }
-    this.shippingCarInfo()
+    this.getShoppingCarInfo()
   },
   // 删除
-  async cartStepChange(e) {
+  async subFromCart(e) {
     const token = wx.getStorageSync('token')
-    const index = e.currentTarget.dataset.idx
-    const item = this.data.shippingCarInfo.items[index]
-    if (e.detail < 1) {
-      // 删除商品
+    const id = e.currentTarget.dataset.id
+    const item = this.data.shoppingCarInfo.items.find(f => f.goodsId === id)
+    if (item.number <= 1) { // 删除商品
       wx.showLoading({
         title: '',
       })
-      const res = await WXAPI.shippingCarInfoRemoveItem(token, item.key)
+      const res = await Api.shippingCarInfoRemoveItem(token, item.key)
       wx.hideLoading()
       if (res.code == 700) {
         this.setData({
-          shippingCarInfo: null,
+          shoppingCarInfo: null,
           showCartPop: false
         })
       } else if (res.code == 0) {
         this.setData({
-          shippingCarInfo: res.data
+          shoppingCarInfo: res.data
         })
       } else {
         this.setData({
-          shippingCarInfo: null,
+          shoppingCarInfo: null,
           showCartPop: false
         })
       }
       this.processBadge()
-    } else {
-      // 修改数量
+    } else { // 修改数量
       wx.showLoading({
         title: '',
       })
-      const res = await WXAPI.shippingCarInfoModifyNumber(token, item.key, e.detail)
+      const res = await Api.shippingCarInfoModifyNumber(token, item.key, --item.number)
       wx.hideLoading()
       if (res.code != 0) {
         wx.showToast({
@@ -247,7 +253,7 @@ Page({
         })
         return
       }
-      this.shippingCarInfo()
+      this.getShoppingCarInfo()
     }
   },
   // 清空购物车
@@ -264,6 +270,27 @@ Page({
       })
       return
     }
-    this.shippingCarInfo()
+    this.getShoppingCarInfo()
   },
+
+  // 提交订单
+  async onClickSubmit(){
+    const token = wx.getStorageSync('token')
+    const goodsJsonStr = JSON.stringify(this.data.shoppingCarInfo.items) // 菜品列表
+    const address = '上海市'
+    const res = await Api.orderCreate({
+      token, 
+      goodsJsonStr,
+      address,
+      autoPeisong: 'false',
+      calculate: 'true', // true 不实际下单，而是返回价格计算
+      peisongFeeId: '81038', // 配送费的id
+      peisongType: 'kd', // 配送类型，kd 代表快递
+      provinceId: '000000', //	收货地址省份编码
+      cityId: '00', //	收货地址城市编码
+      distric: '00', // 	收货地址区县编码
+      streetId: '12', //	收货地址街道/社区编码
+    })
+    console.log(res);
+  }
 })
