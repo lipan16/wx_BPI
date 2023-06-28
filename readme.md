@@ -28,4 +28,10 @@
 | shippingCarInfo |  | 读取购物车数据 |
 | shippingCarInfoRemoveItem |  | 删除购物车商品 |
 | shippingCarInfoModifyNumber |  | 修改购物车商品数量 |
+| orderCreate | 商城管理 ---> 订单列表 | 下单 |
+| orderPay | 商城管理 ---> 订单列表 | 支付 |
+| orderList | 商城管理 ---> 订单列表 | 订单列表 |
+| orderDelete | 商城管理 ---> 订单列表 | 删除订单 |
+
+|  |财务管理 ---》 用户资产管理  | 调整用户余额 |
 

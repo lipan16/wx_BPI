@@ -22,6 +22,9 @@ Page({
   // 生命周期函数--监听页面显示
   onShow() {
     this.getShoppingCarInfo() // 获取购物车信息
+    Api.userImList({token: wx.getStorageSync('token'), uid: '8693883'}).then(res => {
+      console.log(res)
+    })
   },
 
   changeDistributionType(e){ // 切换配送方式
@@ -277,20 +280,19 @@ Page({
   async onClickSubmit(){
     const token = wx.getStorageSync('token')
     const goodsJsonStr = JSON.stringify(this.data.shoppingCarInfo.items) // 菜品列表
-    const address = '上海市'
     const res = await Api.orderCreate({
       token, 
       goodsJsonStr,
-      address,
-      autoPeisong: 'false',
-      calculate: 'true', // true 不实际下单，而是返回价格计算
-      peisongFeeId: '81038', // 配送费的id
-      peisongType: 'kd', // 配送类型，kd 代表快递
-      provinceId: '000000', //	收货地址省份编码
-      cityId: '00', //	收货地址城市编码
-      distric: '00', // 	收货地址区县编码
-      streetId: '12', //	收货地址街道/社区编码
+      calculate: 'false' // 预下单
     })
-    console.log(res);
+    if(res.data.id && res.data.id !== ''){ // 下单成功
+      Api.orderPay(token, res.data.id).then(response => {
+        // 支付成功
+        Api.userImSendmessage(token, '8693883', '我爱你').then(res => {
+          console.log('我爱你' ,res);
+        })
+      })
+    }
+    console.log(res.data);
   }
 })
