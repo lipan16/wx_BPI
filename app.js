@@ -1,6 +1,6 @@
 const Api = require('apifm-wxapi')
 const CONFIG = require('config.js')
-const AUTH = require('utils/auth')
+import AUTH from './utils/auth'
 
 App({
   onLaunch() {
@@ -61,7 +61,7 @@ App({
 
     // 获取系统变量
     Api.queryConfigBatch('appName,version,description,shopId,showWelcome').then(res => {
-      if(res.code === CONFIG.apiSuccess){
+      if (res.code === CONFIG.apiSuccess) {
         const config = {}
         res.data.forEach(m => {
           config[m.key] = m.value
@@ -90,11 +90,12 @@ App({
     })
   },
 
-  onShow(e){
+  onShow(e) {
     AUTH.checkHasLogined().then(isLogined => { // 检查登录状态
-      if (isLogined) {
+      if (!isLogined) {
         AUTH.authorize().then(res => { // 授权
-          console.log('authorize', res);
+          wx.setStorageSync('token', res.token)
+          wx.setStorageSync('uid', res.uid)
         })
       }
     })

@@ -1,4 +1,5 @@
-import moment from 'moment';
+import moment from 'moment'
+
 Page({
   data: {
     showTimeId: null, // 下班时间id

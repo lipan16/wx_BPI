@@ -56,9 +56,17 @@ async function authorize() {
       success: function (loginRes) {
         Api.authorize({code: loginRes.code}).then(function (res) {
           if (res.code == 0) {
-            wx.setStorageSync('token', res.data.token)
-            wx.setStorageSync('uid', res.data.uid)
             resolve(res.data)
+          }else if(res.code === 10000){ // 用户注册
+            Api.register_simple({code:  loginRes.code}).then(reg => {
+              if(reg.code === 0){
+                Api.login_wx(loginRes.code).then(res => {
+                  resolve(res.data)
+                })
+              }else{
+                reject('注册失败')
+              }
+            })
           } else {
             wx.showToast({
               title: res.msg,
@@ -75,32 +83,21 @@ async function authorize() {
   })
 }
 
-async function login(page){
-  const _this = this
-  wx.login({
-    success: function (loginRes) {
-      Api.login_wx(loginRes.code).then(function (res) {        
-        if (res.code == 10000) {
-          // 去注册
-          return;
-        }
-        if (res.code != 0) {
-          // 登录错误
-          wx.showModal({
-            title: '无法登录',
-            content: res.msg,
-            showCancel: false
-          })
-          return;
-        }
-        wx.setStorageSync('token', res.data.token)
-        wx.setStorageSync('uid', res.data.uid)
-        if ( page ) {
-          page.onShow()
-        }
-      })
-    }
-  })
+function login() {
+  return new Promise(function (resolve, reject) {
+      wx.login({
+          success: function (res) {
+              if (res.code) {
+                  resolve(res);
+              } else {
+                  reject(res);
+              }
+          },
+          fail: function (err) {
+              reject(err);
+          }
+      });
+  });
 }
 
 function loginOut(){
