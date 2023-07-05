@@ -8,7 +8,8 @@
     "pages/work-progress/index",
     "pages/notice/index",
     "pages/notice/detail",
-    "pages/menu/index"
+    "pages/menu/index",
+    "pages/dishes/index"
   ],
   "tabBar": {
     "color": "#6e6d6b",
