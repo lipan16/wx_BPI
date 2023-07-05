@@ -1,32 +1,26 @@
+const Api = require('apifm-wxapi')
+
 Page({
   data: {
-
+    shoppingCarInfo: {},
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    this.getShoppingCarInfo()
   },
-
   toIndexPage: function () {
     wx.switchTab({
       url: "/pages/index/index"
     });
+  },
+  // 读取购物车数据
+  async getShoppingCarInfo() {
+    const res = await Api.shippingCarInfo(wx.getStorageSync('token'))
+    console.log(res);
+    this.setData({
+      shoppingCarInfo:  res.code == 0 ? res.data : null
+    })
   },
 })

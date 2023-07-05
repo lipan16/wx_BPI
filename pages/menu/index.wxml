@@ -40,12 +40,12 @@
         <view>{{ item.characteristic }}</view>
       </view>
       <view slot="footer" class="goods-btn">
-        <view wx:if="{{item.stores < item.minBuyNumber}}" class="btn disable">补货中</view>
-        <view wx:elif="{{item.propertyIds || item.hasAddition}}" class="btn" data-id="{{item.id}}" bindtap="selectSpecification">选规格</view>
+        <view wx:if="{{item.stores < item.minBuyNumber}}" class="btn disable" catchtap='null'>补货中</view>
+        <view wx:elif="{{item.propertyIds || item.hasAddition}}" class="btn" data-id="{{item.id}}" catchtap="selectSpecification">选规格</view>
         <view wx:else class="icon">
-          <van-icon wx:if="{{item.badge}}" name="minus" color="#e64340" size="40rpx" data-id="{{item.id}}" bind:click="subFromCart" />
+          <van-icon wx:if="{{item.badge}}" name="minus" color="#e64340" size="40rpx" data-id="{{item.id}}" catchtap="subFromCart" />
           <view wx:if="{{item.badge}}" class="num">{{item.badge}}</view>
-          <van-icon name="add" color="#e64340" size="40rpx" data-id="{{item.id}}" bind:click="addToCart" />
+          <van-icon name="add" color="#e64340" size="40rpx" data-id="{{item.id}}" bind:click="" catchtap="addToCart"/>
         </view>
       </view>
     </van-card>
