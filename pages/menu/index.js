@@ -108,10 +108,8 @@ Page({
   },
   // 进入详情
   goGoodsDetail(e) {
-    const index = e.currentTarget.dataset.idx
-    const goodsId = this.data.goods[index].id
     wx.navigateTo({
-      url: '/pages/goods-details/index?id=' + goodsId,
+      url: '/pages/dishes/index?id=' +  e.currentTarget.dataset.id,
     })
   },
 
@@ -177,6 +175,9 @@ Page({
     const token = wx.getStorageSync('token')
     const item = this.data.goods.find(f => f.id === e.currentTarget.dataset.id)
     console.log(item);
+    wx.showToast({
+      title: '开发中',
+    })
   },
   // 加入购物车
   async addToCart(e){

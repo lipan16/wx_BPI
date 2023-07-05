@@ -25,7 +25,17 @@
   </view>
   <scroll-view class="menu-goods" scroll-y="true" scroll-top="{{scrolltop}}" bindscrolltolower="_onReachBottom">
     <van-empty wx:if="{{!goods || goods.length == 0}}" description="暂无商品" />
-    <van-card wx:for="{{goods}}" wx:key="id" centered="true" lazy-load="true" title="{{item.name}}" origin-price="{{ (item.originalPrice > 0 && item.originalPrice != item.minPrice) ? item.originalPrice : '' }}" price="{{item.minPrice}}" thumb="{{item.pic}}" thumb-mode="aspectFill" thumb-link="/pages/goods-details/index?id={{item.id}}" tag="{{ item.badge ? item.badge : '' }}">
+    <van-card wx:for="{{goods}}" wx:key="id" 
+      centered="true" 
+      lazy-load="true" 
+      title="{{item.name}}" 
+      origin-price="{{ (item.originalPrice > 0 && item.originalPrice != item.minPrice) ? item.originalPrice : '' }}"
+      price="{{item.minPrice}}" 
+      thumb="{{item.pic}}" 
+      thumb-mode="aspectFill"
+      bindtap="goGoodsDetail"
+      data-id="{{item.id}}"
+      tag="{{ item.badge ? item.badge : '' }}">
       <view slot="desc" class="goods-desc">
         <view>{{ item.characteristic }}</view>
       </view>

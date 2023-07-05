@@ -1,0 +1,3 @@
+<view>
+  <mp-html content="{{detail.content}}" />
+</view>
