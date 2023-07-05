@@ -22,8 +22,9 @@ Page({
   // 生命周期函数--监听页面显示
   onShow() {
     this.getShoppingCarInfo() // 获取购物车信息
-    Api.userImList({token: wx.getStorageSync('token'), uid: '8693883'}).then(res => {
-      console.log(res)
+    // 获取下单消息
+    Api.userImList({token: wx.getStorageSync('token'), uid: '8919430'}).then(res => {
+      console.log(res.data)
     })
   },
 
@@ -262,16 +263,15 @@ Page({
   // 清空购物车
   async clearCart() {
     wx.showLoading({
-      title: '',
+      title: '加载中...',
     })
-    const res = await WXAPI.shippingCarInfoRemoveAll(wx.getStorageSync('token'))
+    const res = await Api.shippingCarInfoRemoveAll(wx.getStorageSync('token'))
     wx.hideLoading()
-    if (res.code != 0) {
+    if (res.code === 0) {
       wx.showToast({
-        title: res.msg,
-        icon: 'none'
+        title: '下单成功',
+        icon: 'success'
       })
-      return
     }
     this.getShoppingCarInfo()
   },
@@ -288,11 +288,15 @@ Page({
     if(res.data.id && res.data.id !== ''){ // 下单成功
       Api.orderPay(token, res.data.id).then(response => {
         // 支付成功
-        Api.userImSendmessage(token, '8693883', '我爱你').then(res => {
-          console.log('我爱你' ,res);
+        Api.userImSendmessage(token, '8919430', `我爱你 orderId: ${res.data.id}`).then(msgRes => {
+          if(msgRes.code === 0){
+            wx.showToast({
+              title: '下单成功',
+            })
+            this.clearCart()
+          }
         })
       })
     }
-    console.log(res.data);
   }
 })

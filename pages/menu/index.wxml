@@ -43,7 +43,7 @@
 </view>
 
 <view class="footer">
-  <van-submit-bar price="{{shoppingCarInfo.price * 100}}" button-text="提交订单" bind:submit="onClickSubmit">
-    <van-icon name="https://b.yzcdn.cn/vant/icon-demo-1126.png" size="32px" info="{{shoppingCarInfo.number}}" />
+  <van-submit-bar disabled="{{!shoppingCarInfo.price}}" price="{{shoppingCarInfo.price * 100 || 0}}" button-text="提交订单" bind:submit="onClickSubmit">
+    <van-icon name="https://dcdn.it120.cc/2023/07/05/a300f9fb-9a4b-4272-823b-4edc928f655b.png" size="40px" info="{{shoppingCarInfo.number}}" />
   </van-submit-bar>
 </view>
