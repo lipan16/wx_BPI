@@ -277,8 +277,8 @@ Page({
     this.getShoppingCarInfo()
   },
 
-  // 提交订单
-  async onClickSubmit(){
+ // 提交接口
+  async submitApi(){
     const token = wx.getStorageSync('token')
     const goodsJsonStr = JSON.stringify(this.data.shoppingCarInfo.items) // 菜品列表
     const res = await Api.orderCreate({
@@ -289,15 +289,34 @@ Page({
     if(res.data.id && res.data.id !== ''){ // 下单成功
       Api.orderPay(token, res.data.id).then(response => {
         // 支付成功
-        Api.userImSendmessage(token, '8919430', `我爱你 orderId: ${res.data.id}`).then(msgRes => {
-          if(msgRes.code === 0){
-            wx.showToast({
-              title: '下单成功',
-            })
-            this.clearCart()
-          }
+        wx.showModal({
+          title: this.data.shopInfo.info.name,
+          content: `已付款${res.data.amountReal}元，下单成功，单号：${res.data.id}`,
+          duration: 100000
         })
+        // Api.userImSendmessage(token, '8919430', `我爱你 orderId: ${res.data.id}`).then(msgRes => {
+        //   if(msgRes.code === 0){
+        //     wx.showToast({
+        //       title: '下单成功',
+        //     })
+        //     this.clearCart()
+        //   }
+        // })
       })
     }
-  }
+  },
+   // 提交订单
+   onClickSubmit(){
+    wx.showModal({
+      title: this.data.shopInfo.info.name + '提醒',
+      content: '确定提交订单吗？',
+      success: res => {
+        if(res.confirm){
+          this.submitApi()
+        }else{
+          return
+        }
+      }
+    })
+  },
 })
