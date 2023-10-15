@@ -24,7 +24,7 @@ Page({
     const showTimeId = setInterval(() => {
       const time = moment(this.data.endTime, 'HH:mm:ss') - moment()
       const mdt = moment.duration(time)
-      const showTime = time > 0 ? `${mdt.hours()}h:${mdt.minutes()}m:${mdt.seconds()}s` : '已下班'
+      const showTime = time > 0 ? `${mdt.hours()}时:${mdt.minutes()}分:${mdt.seconds()}s` : '已下班'
       let money = (Number(this.data.money) + 0.09).toFixed(2)
       this.setData({
         showTime,

@@ -2,14 +2,13 @@
   <view class="my-head">
   <button wx:if="{{canIUseGetUserProfile}}" class="userinfo" bindtap="getUserProfile">
     <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+    <text class="userinfo-nickname">hi, {{ userInfo.nickName }}</text>
   </button>
   <button wx:else class="userinfo" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
     <image wx:if="{{userInfo && userInfo.avatarUrl}}" class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{ userInfo.nickName }}</text>
+    <text class="userinfo-nickname">hi, {{ userInfo.nickName }}</text>
   </button>
-  </view>
-
+</view>
   <view class="my-content">
     <view class="content"></view>
     <text class="copyright">Copyright © 2018 - 2023 xiaobing. All Rights Reserved. {{appName}} 版权所有</text>

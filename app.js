@@ -24,6 +24,28 @@ App({
     })
 
     /**
+     * 获取授权
+     */
+    wx.getSetting({
+      success(res) {
+        console.log('wx.getSetting', res);
+        if (!res.authSetting['scope.userLocation']) {
+          wx.authorize({
+            scope: 'scope.userLocation',
+          })
+        }
+        if (!res.authSetting['scope.userInfo']) {
+          wx.authorize({
+            scope: 'scope.userInfo',
+            success() {
+              console.log(1);
+            }
+          })
+        }
+      }
+    })
+
+    /**
      * 初次加载判断网络情况
      * 无网络状态下根据实际情况进行调整
      */
