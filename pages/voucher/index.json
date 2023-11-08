@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "攀的专属兑换券"
+  "navigationBarTitleText": "攀的专属兑换券",
+  "enablePullDownRefresh": true
 }

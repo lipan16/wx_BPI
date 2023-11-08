@@ -8,28 +8,29 @@ Page({
   },
 
   onLoad(){
+    wx.stopPullDownRefresh() //刷新完成后停止下拉刷新动效
+    this.getFeats()
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.getFeats()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
+    console.log('onPullDownRefresh');
+    this.setData({page: 1})
+    this.onLoad()
   },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-  },
-   // 菜单内容 滚动到底部/右边时触发
-   _onReachBottom() {
-    console.log('_onReachBottom');
-    this.data.page++
+    console.log('onReachBottom');
+    this.setData({page: this.data.page + 1})
     this.getFeats()
   },
 
@@ -40,12 +41,11 @@ Page({
       categoryId: '381107',
       pageSize: 20,
     }).then(res => {
-      console.log(res);
       if (res.code == 700) {
         if (this.data.page == 1) {
-          this.setData({
-            vouchers: null
-          })
+          this.setData({vouchers: null})
+        }else{
+          this.setData({page: this.data.page - 1})
         }
         return
       }

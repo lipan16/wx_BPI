@@ -1,1 +1,10 @@
-/* pages/voucher/index.wxss */
+.vouchers{
+  padding: 0 16px;
+}
+.voucher{
+  background-color: rgb(250, 198, 198);
+  color: rgb(236, 79, 87);
+  padding: 16px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}

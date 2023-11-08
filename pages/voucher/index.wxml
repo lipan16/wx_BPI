@@ -1,4 +1,10 @@
-<view>
-  <van-empty description="等待添加">
-  </van-empty>
+<view class="vouchers">
+  <view wx:for="{{vouchers}}" wx:key="id" class="voucher">
+    <view>{{item.name}}</view>
+    <text>{{item.stores}}</text>
+    <view>{{item.purchaseNotes}}</view>
+    <view/>
+  </view>
+
+  <van-empty wx:if="{{!vouchers || vouchers.length == 0}}" description="等待添加"/>
 </view>
