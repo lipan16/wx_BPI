@@ -39,7 +39,7 @@ Page({
     Api.goodsv2({
       page: this.data.page,
       categoryId: '381107',
-      pageSize: 20,
+      pageSize: 10,
     }).then(res => {
       if (res.code == 700) {
         if (this.data.page == 1) {
@@ -64,4 +64,11 @@ Page({
     })
   },
 
+  onClickVoucher(e){
+    const item = this.data.vouchers.find(f => f.id === e.currentTarget.dataset.id)
+    wx.showModal({
+      title: item.name,
+      content: item.purchaseNotes + '。仅可使用一次，使用完交给女朋友，看心情发放。肖冰版权所有。'
+    })
+  }
 })

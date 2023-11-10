@@ -1,10 +1,26 @@
 .vouchers{
   padding: 0 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgb(138, 127, 127);
 }
 .voucher{
-  background-color: rgb(250, 198, 198);
-  color: rgb(236, 79, 87);
+  background-color: rgb(184, 184, 184);
+  color: rgb(218, 123, 123);
   padding: 16px;
   margin-bottom: 12px;
   border-radius: 8px;
+}
+.usable{
+  background-color: rgb(250, 198, 198);
+  color: rgb(236, 79, 87);
+}
+.voucher > .name{
+  font-size: 24px;
+  font-weight: bold;
+}
+.voucher > .desc{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+  color: hsl(226, 82%, 67%);
 }
