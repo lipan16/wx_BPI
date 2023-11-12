@@ -1,5 +1,5 @@
 <view class="work">
-  <text class="title">上坟</text>
+  <text class="title">上班</text>
   <view class="progress">
     <view class="title1">今天赚了</view>
     <van-divider contentPosition="center" customStyle="width: 200px; border-color: #1989fa; --divider-margin: 10px;">

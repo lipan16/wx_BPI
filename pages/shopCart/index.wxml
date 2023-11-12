@@ -1,5 +1,8 @@
 <import src="./component/index.wxml"/>
 
 <view class="container">
-  <template is="no-goods"></template>
+  <template 
+    is="{{shippingCarInfo.items ?'cart-goods-list': 'no-goods'}}"
+    data="{{...shippingCarInfo}}"
+  />
 </view>

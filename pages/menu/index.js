@@ -23,9 +23,9 @@ Page({
   onShow() {
     this.getShoppingCarInfo() // 获取购物车信息
     // 获取下单消息
-    Api.userImList({token: wx.getStorageSync('token'), uid: '8919430'}).then(res => {
-      console.log(res.data)
-    })
+    // Api.userImList({token: wx.getStorageSync('token'), uid: '8919430'}).then(res => {
+    //   console.log(res.data)
+    // })
   },
 
   changeDistributionType(e){ // 切换配送方式
@@ -292,7 +292,12 @@ Page({
         wx.showModal({
           title: this.data.shopInfo.info.name,
           content: `已付款${res.data.amountReal}元，下单成功，单号：${res.data.id}`,
-          duration: 100000
+          duration: 100000,
+          success: res => {
+            if(res.confirm){
+              this.clearCart()
+            }
+          }
         })
         // Api.userImSendmessage(token, '8919430', `我爱你 orderId: ${res.data.id}`).then(msgRes => {
         //   if(msgRes.code === 0){
@@ -306,7 +311,7 @@ Page({
     }
   },
    // 提交订单
-   onClickSubmit(){
+  onClickSubmit(){
     wx.showModal({
       title: this.data.shopInfo.info.name + '提醒',
       content: '确定提交订单吗？',

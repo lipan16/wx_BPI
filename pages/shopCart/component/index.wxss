@@ -18,7 +18,6 @@
 }
 
 .to-index-btn {
-
   line-height: 60rpx;
   text-align: center;
   font-size: 28rpx;
@@ -207,6 +206,7 @@
   background-color: #FAFAFA;
   z-index: 999;
 }
+
 .jiesuan-box .to-pay-btn {
   text-align: center;
   line-height: 76rpx;
