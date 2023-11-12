@@ -1,4 +1,3 @@
-// pages/notice/index.js
 Page({
 
   /**
