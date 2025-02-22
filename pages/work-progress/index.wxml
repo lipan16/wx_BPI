@@ -15,5 +15,4 @@
       {{showTime}}
     </view>
   </view>
-  <view class="desc">苦</view>
 </view>

@@ -43,9 +43,3 @@
   font-size: 24px;
   color: #ee79b4;
 }
-
-
-.desc {
-  text-align: center;
-  margin-top: 18rpx;
-}

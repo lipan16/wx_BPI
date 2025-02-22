@@ -1,12 +1,12 @@
 <view class="vouchers">
-  <view wx:for="{{vouchers}}" wx:key="id" 
-  class="{{item.stores > 0 ? 'voucher usable': 'voucher'}}"
-  bindtap="onClickVoucher"
-  data-id="{{item.id}}"
+  <view wx:for="{{vouchers}}" wx:key="key" 
+    class="{{item.status === 0 ? 'voucher': 'voucher usable'}}"
+    bindtap="onClickVoucher"
+    data-id="{{item.key}}"
   >
-    <view class="name">{{item.name}}</view>
-    <view class="desc">{{item.purchaseNotes}}</view>
-    <view/>
+      <view class="name">{{item.name}}</view>
+      <view class="desc">{{item.desc}}</view>
   </view>
+  
   <van-empty wx:if="{{!vouchers || vouchers.length == 0}}" description="等待添加"/>
 </view>

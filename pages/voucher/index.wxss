@@ -5,7 +5,7 @@
 }
 .voucher{
   background-color: rgb(184, 184, 184);
-  color: rgb(218, 123, 123);
+  color: rgba(218, 123, 123, 0.829);
   padding: 16px;
   margin-bottom: 12px;
   border-radius: 8px;

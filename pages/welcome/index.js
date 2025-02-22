@@ -5,9 +5,9 @@ const app = getApp()
 Page({
   data: {
     banners: [
-      {id: '1', url: `${CONFIG.host}/static/wx_banner_1.jpg`},
-      {id: '2', url: `${CONFIG.host}/static/wx_banner_2.jpg`},
-      {id: '3', url: `${CONFIG.host}/static/wx_banner_3.jpg`}
+      {id: '1', url: `${CONFIG.host}/static/xcx/wx_banner_1.jpg`},
+      {id: '2', url: `${CONFIG.host}/static/xcx/wx_banner_2.jpg`},
+      {id: '3', url: `${CONFIG.host}/static/xcx/wx_banner_3.jpg`}
     ],
     swiperCurrent: 0,
   },

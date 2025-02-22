@@ -4,11 +4,9 @@ const AUTH = require('../../utils/auth')
 
 Page({
   data: {
-    shopInfo: {}, // 门店信息
-    distributionType: 'zq', // zq 自取，wm 外卖
     page: 1, // 列表请求下标
-    scrolltop: 0, // 菜单内容 设置竖向滚动条位置
-    categories: [], // 菜单分类 goodsCategoryV2 69049
+    scrolltop: 0, // 设置竖向滚动条位置
+    categories: [], // 侧边菜单分类 goodsCategoryV2 69049
     categorySelected: {}, // 选中的菜单分类
     goods: [], // 菜品列表
     shoppingCarInfo: {}, // 购物车
@@ -16,7 +14,6 @@ Page({
 
   // 生命周期函数--监听页面加载
   onLoad(options) {
-    this.getshopInfo() // 获取门店信息
     this.getCategories() // 获取菜单分类
   },
   // 生命周期函数--监听页面显示
@@ -37,7 +34,7 @@ Page({
 
   // 获取菜单分类
   getCategories(){
-    Api.goodsCategoryV2(wx.getStorageSync('config').shopId).then(res => {
+    Api.goodsCategoryV2('69049').then(res => {
       if(res.code === CONFIG.apiSuccess){
         this.setData({
           categories: res.data,
@@ -47,16 +44,6 @@ Page({
       }
     })
   },
-
- // 获取商店信息
-  getshopInfo(){
-    Api.shopSubdetail(wx.getStorageSync('config').shopId).then(res => {
-      if(res.code === CONFIG.apiSuccess){
-        this.setData({shopInfo: res.data})
-      }
-    })
-  },
-
 
   // 点击菜单分类
   onCLickCategory(e) {
@@ -118,9 +105,7 @@ Page({
   async getShoppingCarInfo() {
     const res = await Api.shippingCarInfo(wx.getStorageSync('token'))
     if (res.code == 0) {
-      this.setData({
-        shoppingCarInfo: res.data
-      })
+      this.setData({shoppingCarInfo: res.data})
     } else {
       this.setData({
         shoppingCarInfo: null,
