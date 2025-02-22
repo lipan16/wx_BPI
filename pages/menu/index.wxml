@@ -1,22 +1,3 @@
-<view class="shop">
-  <view class="shop-name">
-    <view class="name" bindtap="selectshop">{{shopInfo.info.name}}</view>
-    <view wx:if="{{ shopInfo.info.openWaimai && shopInfo.info.openZiqu }}" class="select">
-      <view class="{{distributionType == 'zq' ? 'on' : 'off'}}" data-type="zq" bindtap="changeDistributionType">自取</view>
-      <view class="{{distributionType == 'kd' ? 'on' : 'off'}}" data-type="kd" bindtap="changeDistributionType">外卖</view>
-    </view>
-  </view>
-  <view class="distance-bar">
-    <view class="distance">距离您 {{shopInfo.info.distance || 0}} 千米</view>
-    <navigator url="/pages/shop/detail?id={{shopInfo.info.id}}" hover-class="none">
-      <view class="shop-message">
-        <view class="message">查看门店信息</view>
-        <van-icon name="arrow" />
-      </view>
-    </navigator>
-  </view>
-</view>
-
 <view class="menu">
   <view class="menu-category">
     <van-sidebar>
@@ -54,6 +35,6 @@
 
 <view class="footer">
   <van-submit-bar disabled="{{!shoppingCarInfo.price}}" price="{{shoppingCarInfo.price * 100 || 0}}" button-text="提交订单" bind:submit="onClickSubmit">
-    <van-icon name="https://dcdn.it120.cc/2023/07/05/a300f9fb-9a4b-4272-823b-4edc928f655b.png" size="40px" info="{{shoppingCarInfo.number}}" />
+    <van-icon name="https://dcdn.it120.cc/2025/02/17/dd935920-122f-4f9c-bfc5-a363fda20324.png" size="40px" info="{{shoppingCarInfo.number}}" />
   </van-submit-bar>
 </view>

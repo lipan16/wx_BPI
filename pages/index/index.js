@@ -4,16 +4,15 @@ const APP = getApp()
 
 Page({
   data: {
-    appName: '',
-    banners: [], // 轮播图
+    appName: CONFIG.appName,
+    banners: [
+      {id: '1', url: `${CONFIG.host}/static/1597550702059.jpg`}
+    ], // 轮播图
     feats: [], // 功能列表
     notice: {}, // 公告
   },
   // 监听页面加载
   onLoad() {
-    const config = wx.getStorageSync('config')
-    this.setData({appName: config.appName})
-    this.getHomeBanner()
     this.getFeats()
     Api.noticeLastOne('notice').then(res => {
       this.setData({notice: res.data})
@@ -28,16 +27,6 @@ Page({
     })
   },
 
-  // 获取首页轮播图
-  getHomeBanner() {
-    Api.banners({type: 'index'}).then(res => {
-      if (res.code == CONFIG.apiSuccess) {
-        this.setData({
-          banners: res.data
-        })
-      }
-    })
-  },
   // 获取功能列表
   getFeats() {
     Api.goodsCategoryV2(0).then(res => {

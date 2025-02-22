@@ -22,12 +22,18 @@
 	width: 160rpx;
 	height: 160rpx;
 	margin: 20rpx;
-	border-radius: 50%;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
 }
 
+.userinfo-avatar .avatar{
+  height: 100%;
+  width: 100%;
+}
 .userinfo-nickname {
-  margin-top: 20rpx;
-  color: #FFF;
+  height: 48rpx;
+  text-align: center;
 }
 
 .my-content{

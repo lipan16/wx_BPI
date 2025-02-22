@@ -1,9 +1,12 @@
 const Api = require('apifm-wxapi')
 const CONFIG = require('config.js')
+import { getStorageSync } from './utils/index'
 import AUTH from './utils/auth'
 
 App({
   onLaunch() {
+    // wx.setEnableDebug({enableDebug: true})
+
     const that = this
     // 初始化请求
     Api.init(CONFIG.subDomain)
@@ -30,16 +33,12 @@ App({
       success(res) {
         console.log('wx.getSetting', res);
         if (!res.authSetting['scope.userLocation']) {
-          wx.authorize({
-            scope: 'scope.userLocation',
-          })
+          wx.authorize({scope: 'scope.userLocation'})
         }
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
-            success() {
-              console.log(1);
-            }
+            success() {console.log('申请scope.userInfo 成功')}
           })
         }
       }
@@ -81,35 +80,19 @@ App({
       }
     })
 
-    // 获取系统变量
-    Api.queryConfigBatch('appName,version,description,shopId,showWelcome').then(res => {
-      if (res.code === CONFIG.apiSuccess) {
-        const config = {}
-        res.data.forEach(m => {
-          config[m.key] = m.value
-        })
-        wx.setStorageSync('config', config)
-      }
-    })
-
     // 检测navbar高度
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     console.log("小程序胶囊信息", menuButtonObject)
-    wx.getSystemInfo({
-      success: res => {
-        let statusBarHeight = res.statusBarHeight, // 手机状态栏高度
-          navTop = menuButtonObject.top, //胶囊按钮与顶部的距离
-          navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight); //导航高度
-        this.globalData.statusBarHeight = statusBarHeight;
-        this.globalData.navHeight = navHeight;
-        this.globalData.navTop = navTop;
-        // this.globalData.windowHeight = res.windowHeight;
-        this.globalData.menuButtonObject = menuButtonObject;
-      },
-      fail(err) {
-        console.log(err);
-      }
-    })
+    const res = wx.getWindowInfo()
+    let statusBarHeight = res.statusBarHeight; // 手机状态栏高度
+    const navTop = menuButtonObject.top; //胶囊按钮与顶部的距离
+    const navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight); //导航高度
+    this.globalData.statusBarHeight = statusBarHeight;
+    this.globalData.navHeight = navHeight;
+    this.globalData.navTop = navTop;
+    this.globalData.menuButtonObject = menuButtonObject;
+
+    this.globalData.userInfo = getStorageSync('userInfo')
   },
 
   onShow(e) {
@@ -125,5 +108,6 @@ App({
 
   globalData: {
     isConnected: true, // 网络状态
+    userInfo: null, // 用户信息
   }
 })

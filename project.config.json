@@ -17,7 +17,7 @@
     "autoAudits": false,
     "showShadowRootInWxmlPanel": true,
     "scopeDataCheck": false,
-    "uglifyFileName": false,
+    "uglifyFileName": true,
     "checkInvalidKey": true,
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
@@ -46,7 +46,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
   "appid": "wx8e0bc393ac228f86",
-  "projectname": "miniprogram-92",
+  "projectname": "bing",
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

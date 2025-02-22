@@ -530,6 +530,9 @@ module.exports = {
       id: id, token: token
     });
   },
+  goodsDetailV2: function goodsDetailV2(data) {
+    return request('/shop/goods/detail', true, 'get', data);
+  },
   goodsLimitations: function goodsLimitations(goodsId) {
     var priceId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : '';
 
@@ -1311,6 +1314,9 @@ module.exports = {
   modifyUserPassword: function modifyUserPassword(token, pwdOld, pwdNew) {
     return request('/user/modify/password', true, 'post', { token: token, pwdOld: pwdOld, pwdNew: pwdNew });
   },
+  modifyUserPasswordByUserName: function modifyUserPasswordByUserName(data) {
+    return request('/user/username/modifyPassword', true, 'post', data);
+  },
   uniqueId: function uniqueId() {
     var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
 
@@ -1597,7 +1603,7 @@ module.exports = {
   bindEmail: function bindEmail(token, email, code) {
     var pwd = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
 
-    return request('/user/email/bindUsername', true, 'post', {
+    return request('/user/email/bindEmail', true, 'post', {
       token: token, email: email, code: code, pwd: pwd
     });
   },
@@ -1649,6 +1655,9 @@ module.exports = {
       addition: addition && addition.length > 0 ? JSON.stringify(addition) : '',
       type: type
     });
+  },
+  shippingCarInfoAddItemV2: function shippingCarInfoAddItemV2(data) {
+    return request('/shopping-cart/add', true, 'post', data);
   },
   shippingCarInfoModifyNumber: function shippingCarInfoModifyNumber(token, key, number) {
     var type = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : '';
@@ -1781,6 +1790,15 @@ module.exports = {
   },
   wxOpenAuthorization: function wxOpenAuthorization(data) {
     return request('/user/wxsns/authorization', true, 'post', data);
+  },
+  wxOpenRegister: function wxOpenRegister(data) {
+    return request('/user/wxsns/register', true, 'post', data);
+  },
+  wxOpenBindOpenid: function wxOpenBindOpenid(data) {
+    return request('/user/wxsns/bindOpenid/v2', true, 'post', data);
+  },
+  wxOpenLogin: function wxOpenLogin(data) {
+    return request('/user/wxsns/login', true, 'post', data);
   },
   userAttentioncheck: function userAttentioncheck(token, uid) {
     return request('/user/attention/check', true, 'get', {
