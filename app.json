@@ -27,7 +27,7 @@
       {
         "pagePath": "pages/shopCart/index",
         "iconPath": "images/nav/cart-off.png",
-        "selectedIconPath": "images/nav/cart-on.png",
+        "selectedIconPath": "images/nav/cart.png",
         "text": "购物车"
       },
       {

@@ -95,17 +95,6 @@ App({
     this.globalData.userInfo = getStorageSync('userInfo')
   },
 
-  onShow(e) {
-    AUTH.checkHasLogined().then(isLogined => { // 检查登录状态
-      if (!isLogined) {
-        AUTH.authorize().then(res => { // 授权
-          wx.setStorageSync('token', res.token)
-          wx.setStorageSync('uid', res.uid)
-        })
-      }
-    })
-  },
-
   globalData: {
     isConnected: true, // 网络状态
     userInfo: null, // 用户信息

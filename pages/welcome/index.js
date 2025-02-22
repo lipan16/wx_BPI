@@ -63,7 +63,7 @@ Page({
   // 进入首页
   goToIndex: function (e) {
     if (getApp().globalData.isConnected) {
-      setStorageSync('firstEntry', Date.now(), 0)
+      setStorageSync('firstEntry', Date.now(), 1)
       wx.switchTab({url: '/pages/index/index'});
     } else {
       wx.showToast({title: '当前无网络', icon: 'none'})

@@ -5,7 +5,6 @@
  * @param {number} expire 过期天数
  */
 export const setStorageSync = (key, value, expire) => {
-  console.log('1');
   const val = {
     time: Date.now(),
     expire: Date.now() + expire * 60 * 60 * 1000,

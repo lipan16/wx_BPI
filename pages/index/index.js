@@ -6,7 +6,9 @@ Page({
   data: {
     appName: CONFIG.appName,
     banners: [
-      {id: '1', url: `${CONFIG.host}/static/1597550702059.jpg`}
+      {id: '1', url: `${CONFIG.host}/static/1597551240750.jpg`},
+      {id: '2', url: `${CONFIG.host}/static/1597550702059.jpg`},
+      {id: '3', url: `${CONFIG.host}/static/1597550850648.jpg`}
     ], // 轮播图
     feats: [], // 功能列表
     notice: {}, // 公告
@@ -29,59 +31,46 @@ Page({
 
   // 获取功能列表
   getFeats() {
-    Api.goodsCategoryV2(0).then(res => {
-      if (res.code === CONFIG.apiSuccess) {
-        this.setData({
-          feats: res.data
-        })
+    wx.request({
+      url: `${CONFIG.host}/api/feat`,
+      success: ({data}) => {
+        this.setData({feats: data})
       }
     })
   },
 
   // 事件处理函数
   onClickSearch() { // 点击搜索
-    wx.showToast({
-      title: '奋力开发中...',
-      icon: 'none'
-    })
+    wx.showToast({title: '奋力开发中...', icon: 'none'})
   },
   onClickBanner: function (e) { // 点击banner
     const url = e.currentTarget.dataset.url
-    url && wx.navigateTo({
-      url
-    })
+    url && wx.navigateTo({url})
   },
+
   onClickFeat(e) { // 点击功能
     const item = this.data.feats.find(f => f.id === e.currentTarget.dataset.id)
     const {key, type} = item
 
     if (type === 'page') {
-      wx.navigateTo({
-        url: key
-      })
+      wx.navigateTo({url: key})
     } else if (type === 'tab') {
-      wx.switchTab({
-        url: key
-      })
+      wx.switchTab({url: key})
     } else if(type === 'url'){
       wx.showModal({
         title: '系统提示',
-        content: '这是一个外部地址，是否跳转',
+        content: `【${key}】是一个外部地址，是否跳转?`,
         success(res) {
           if (res.confirm) {
-            console.log('用户点击确定')
-            console.log(key);
-          } else if (res.cancel) {
-            console.log('用户点击取消')
+            wx.miniapp.openUrl(key)
           }
         }
       })
     }
   },
+
   gotoNotice(e){ // 点击公告
     const id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: '/pages/notice/detail?id=' + id,
-    })
+    wx.navigateTo({url: '/pages/notice/detail?id=' + id})
   }
 })
