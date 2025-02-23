@@ -2,7 +2,7 @@
 
 <view class="container">
   <template 
-    is="{{shippingCarInfo.items ?'cart-goods-list': 'no-goods'}}"
-    data="{{...shippingCarInfo}}"
+    is="{{shoppingCarInfo.items ? 'cart-goods-list' : 'no-goods'}}"
+    data="{{...shoppingCarInfo}}"
   />
 </view>

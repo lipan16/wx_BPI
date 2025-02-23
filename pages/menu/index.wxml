@@ -16,10 +16,9 @@
       thumb-mode="aspectFill"
       bindtap="goGoodsDetail"
       data-id="{{item.id}}"
-      tag="{{ item.badge ? item.badge : '' }}">
-      <view slot="desc" class="goods-desc">
-        <view>{{ item.characteristic }}</view>
-      </view>
+      tag="{{ item.badge || '' }}"
+    >
+      <view slot="desc" class="goods-desc">{{ item.characteristic }}</view>
       <view slot="footer" class="goods-btn">
         <view wx:if="{{item.stores < item.minBuyNumber}}" class="btn disable" catchtap='null'>补货中</view>
         <view wx:elif="{{item.propertyIds || item.hasAddition}}" class="btn" data-id="{{item.id}}" catchtap="selectSpecification">选规格</view>
@@ -35,6 +34,6 @@
 
 <view class="footer">
   <van-submit-bar disabled="{{!shoppingCarInfo.price}}" price="{{shoppingCarInfo.price * 100 || 0}}" button-text="提交订单" bind:submit="onClickSubmit">
-    <van-icon name="https://dcdn.it120.cc/2025/02/17/dd935920-122f-4f9c-bfc5-a363fda20324.png" size="40px" info="{{shoppingCarInfo.number}}" />
+    <van-icon name="{{'/images/wmy.png'}}" size="40px" info="{{shoppingCarInfo.number}}" />
   </van-submit-bar>
 </view>

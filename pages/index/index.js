@@ -20,6 +20,7 @@ Page({
       this.setData({notice: res.data})
     })
   },
+  
   // 监听页面显示
   onShow() {
     this.setData({

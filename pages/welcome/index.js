@@ -16,19 +16,14 @@ Page({
   onLoad(options) {
     this.readConfigVal()
     // 补偿写法
-    getApp().configLoadOK = () => {
+    app.configLoadOK = () => {
       this.readConfigVal()
     }
   },
 
   readConfigVal() {
-    const showWelcome = CONFIG.showWelcome
-    if (showWelcome === '1') {
-      const value = getStorageSync('firstEntry')
-      if(value) { // 非第一次进入，直接进入主页
-        wx.switchTab({url: '/pages/index/index'})
-      }
-    } else {
+    const value = getStorageSync('firstEntry')
+    if(value) { // 非第一次进入，直接进入主页
       wx.switchTab({url: '/pages/index/index'})
     }
   },
@@ -37,21 +32,42 @@ Page({
     this.setData({swiperCurrent: e.detail.current})
   },
 
-  async getUserProfile() {
+  getUserProfile() {
+    wx.requestSubscribeMessage({
+      tmplIds: ['rBGQlXNBVlXxlnsIPz2sNcvuI2Zm5QNG09MUBn_M0YM', 'hq6ci9eq3c-y_fmdJU8A-STU3m4VKU_cnErmFsGPeoU'],
+      success: async res => {
+        await this.authLogin()
+      },
+      fail: e => {
+        console.error(e);
+        this.authLogin()
+      }
+    })
+  },
+
+  async authLogin(){
     wx.showLoading({title: '登录中...', mask: true});
     try {
-      const { code } = await wx.login();
+      const {code} = await wx.login();
       // 发送到后端进行登录验证
       wx.request({
         url: `${CONFIG.host}/api/login?code=${code}`,
         success: ({data}) => {
           wx.showLoading({title: JSON.stringify(data), mask: true});
-          if (data.code === 200) {
-            app.globalData.userInfo = {...app.globalData.userInfo, openId: data.token};
-            setStorageSync('userInfo', app.globalData.userInfo, 30)
-            wx.hideLoading();
-            this.goToIndex();
+          const openId = data.token
+          if(openId !== CONFIG.auth && !CONFIG.openIds.includes(openId)){
+            wx.showToast({
+              title: '非内测用户无法使用',
+              icon: 'none',
+              duration: 5000,
+              mask: true
+            })
+            return
           }
+          app.globalData.userInfo = {...app.globalData.userInfo, openId};
+          setStorageSync('userInfo', app.globalData.userInfo, 30)
+          wx.hideLoading();
+          this.goToIndex();
         }
       });
     } catch (err) {
@@ -62,7 +78,7 @@ Page({
 
   // 进入首页
   goToIndex: function (e) {
-    if (getApp().globalData.isConnected) {
+    if (app.globalData.isConnected) {
       setStorageSync('firstEntry', Date.now(), 1)
       wx.switchTab({url: '/pages/index/index'});
     } else {

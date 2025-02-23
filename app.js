@@ -10,7 +10,7 @@ App({
   },
 
   onLaunch() {
-    // wx.setEnableDebug({enableDebug: true})
+    wx.setEnableDebug({enableDebug: true})
 
     const that = this
     // 初始化请求
@@ -35,6 +35,7 @@ App({
      * 获取授权
      */
     wx.getSetting({
+      withSubscriptions: true,
       success(res) {
         console.log('wx.getSetting', res);
         if (!res.authSetting['scope.userLocation']) {
@@ -104,10 +105,10 @@ App({
     AUTH.checkHasLogined().then(isLogined => { // 检查登录状态 
       if (!isLogined) { 
         AUTH.authorize().then(res => { // 授权 
-          wx.setStorageSync('token', res.token) 
-          wx.setStorageSync('uid', res.uid) 
+          wx.setStorageSync('token', res.token)
+          // wx.setStorageSync('uid', res.uid)
         }) 
       } 
-    }) 
+    })
   }
 })

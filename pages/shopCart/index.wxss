@@ -1,5 +1,9 @@
 @import "./component/index.wxss";
 page{
   min-height: 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #F2f2f2;
 }

@@ -6,7 +6,7 @@
 <view class="btn">
   <van-button 
     wx:if="{{swiperCurrent + 1 == banners.length}}" 
-    size="small"
+    
     bindtap="getUserProfile"
     round
     color="linear-gradient(to right, #177cb0, #6149f6)"

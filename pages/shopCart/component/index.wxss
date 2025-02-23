@@ -1,5 +1,7 @@
 .container {
-  justify-content: initial;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .no-goods-icon {
@@ -8,52 +10,9 @@
   margin-top: 109rpx;
 }
 
-.title-box {
-  width: 100vw;
-  margin-top: 30rpx;
-  text-align: center;
-  font-size: 28rpx;
-  color: #999;
-  margin-bottom: 50rpx;
-}
-
-.to-index-btn {
-  line-height: 60rpx;
-  text-align: center;
-  font-size: 28rpx;
-
-  width: 140rpx;
-  height: 60rpx;
-  background: #FFD43E;
-  border-radius: 30px;
-  border: 2px solid #393640;
-
-}
-
-.list-top {
-  width: 100%;
-  height: 88rpx;
-  line-height: 88rpx;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  padding: 0 30rpx;
-  font-size: 28rpx;
-  align-items: center;
-}
-
-.list-top .label {
-  color: #000;
-}
-
-.list-top .edit-btn {
-  color: #999;
-  height: 100%;
-}
-
 .goodsList {
   width: 100%;
-  padding-bottom: 110rpx;
+  flex: 1;
 }
 
 .a-gooods {
@@ -187,7 +146,7 @@
   height: 160rpx;
   border-radius: 16rpx;
 }
-.a-goods-conts .delete-btn {
+.delete-btn {
   width: 120rpx;
   line-height: 220rpx;
   text-align: center;
@@ -200,9 +159,6 @@
   justify-content: space-between;
   width: 100%;
   height: 100rpx;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   background-color: #FAFAFA;
   z-index: 999;
 }
@@ -242,17 +198,6 @@
   font-size: 24rpx;
 }
 
-.del-icon {
-  position: absolute;
-  right: 0rpx;
-  top: 12rpx;
-  width: 50rpx;
-  height: 50rpx;
-}
-.vw100 {
-  width: 700rpx !important;
-  font-size: 24rpx !important;
-}
 .radio-box {
   display: flex;
   justify-content: center;

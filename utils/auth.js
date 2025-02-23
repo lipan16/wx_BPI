@@ -102,7 +102,6 @@ function login() {
 
 function loginOut(){
   wx.removeStorageSync('token')
-  wx.removeStorageSync('uid')
 }
 
 // 检测并且申请权限
