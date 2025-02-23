@@ -1,6 +1,6 @@
 <template name="no-goods">
-  <van-empty description="购物车空空如也～" image="https://dcdn.it120.cc/2021/03/02/11544ab7-38ca-4570-a876-cbfd39720367.png">
-    <van-button round type="danger" size="small" class="bottom-button" bind:click="toIndexPage">
+  <van-empty description="购物车空空如也～" image="/images/empty.png">
+    <van-button round color="linear-gradient(to right, #d376ea, #f93ff3)" size="small" bind:click="toIndexPage">
       去逛逛
     </van-button>
   </van-empty>
@@ -38,7 +38,7 @@
   <view class="jiesuan-box">
     <view class="left-price">
       <view wx:if="{{ score }}" class="total">合计：¥ {{price}} + {{score}} 积分</view>
-      <view wx:else class="total">合计：¥ {{price}}</view>
+      <view wx:else class="total">共 {{number}} 件，合计：¥ {{price}}</view>
     </view>
     <view class="to-pay-btn" bindtap="onClickSubmit">去结算</view>
   </view>
