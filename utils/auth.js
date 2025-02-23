@@ -1,31 +1,10 @@
 const Api = require('apifm-wxapi')
 
-async function wxCode(){
-  return new Promise((resolve, reject) => {
-    wx.login({
-      success(res) {
-        return resolve(res.code)
-      },
-      fail() {
-        wx.showToast({
-          title: '获取code失败',
-          icon: 'none'
-        })
-        return resolve('获取code失败')
-      }
-    })
-  })
-}
-
 async function checkSession(){
   return new Promise((resolve, reject) => {
     wx.checkSession({
-      success() {
-        return resolve(true)
-      },
-      fail() {
-        return resolve(false)
-      }
+      success: () => resolve(true),
+      fail: () => resolve(false),
     })
   })
 }
@@ -60,44 +39,20 @@ async function authorize() {
           }else if(res.code === 10000){ // 用户注册
             Api.register_simple({code:  loginRes.code}).then(reg => {
               if(reg.code === 0){
-                Api.login_wx(loginRes.code).then(res => {
-                  resolve(res.data)
-                })
+                Api.login_wx(loginRes.code).then(res => resolve(res.data))
               }else{
                 reject('注册失败')
               }
             })
           } else {
-            wx.showToast({
-              title: res.msg,
-              icon: 'none'
-            })
+            wx.showToast({title: res.msg, icon: 'none'})
             reject(res.msg)
           }
         })
       },
-      fail: err => {
-        reject(err)
-      }
+      fail: err => reject(err)
     })
   })
-}
-
-function login() {
-  return new Promise(function (resolve, reject) {
-      wx.login({
-          success: function (res) {
-              if (res.code) {
-                  resolve(res);
-              } else {
-                  reject(res);
-              }
-          },
-          fail: function (err) {
-              reject(err);
-          }
-      });
-  });
 }
 
 function loginOut(){
@@ -111,10 +66,8 @@ async function checkAndAuthorize (scope) {
       success(res) {
         if (!res.authSetting[scope]) {
           wx.authorize({
-            scope: scope,
-            success() {
-              resolve() // 无返回参数
-            },
+            scope,
+            success: resolve,
             fail(e){
               wx.showModal({
                 title: '无权操作',
@@ -125,10 +78,7 @@ async function checkAndAuthorize (scope) {
                 success(res) {
                   wx.openSetting();
                 },
-                fail(e){
-                  console.error(e)
-                  reject(e)
-                },
+                fail: reject
               })
             }
           })
@@ -136,19 +86,14 @@ async function checkAndAuthorize (scope) {
           resolve() // 无返回参数
         }
       },
-      fail(e){
-        console.error(e)
-        reject(e)
-      }
+      fail: reject
     })
   })  
 }
 
 module.exports = {
-  wxCode,
   checkHasLogined,
   authorize,
-  login,
   loginOut,
   checkAndAuthorize
 }

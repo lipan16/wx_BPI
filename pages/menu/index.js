@@ -131,10 +131,6 @@ Page({
     }
     const res = await Api.shippingCarInfoAddItem(this.data.token, item.id, number, [], [])
     wx.hideLoading()
-    if (res.code == 2000) {
-      AUTH.login(this)
-      return
-    }
     if (res.code != 0) {
       wx.showToast({title: res.msg, icon: 'none'})
       return

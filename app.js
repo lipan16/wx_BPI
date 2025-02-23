@@ -44,7 +44,19 @@ App({
         if (!res.authSetting['scope.userInfo']) {
           wx.authorize({
             scope: 'scope.userInfo',
-            success() {console.log('申请scope.userInfo 成功')}
+            success() {console.log('申请scope.userInfo 成功')},
+            fail: err => {
+              wx.showModal({
+                title: '无权操作',
+                content: '需要获得您的授权',
+                showCancel: false,
+                confirmText: '立即授权',
+                confirmColor: '#e64340',
+                success(res) {
+                  wx.openSetting();
+                }
+              })
+            }
           })
         }
       }
