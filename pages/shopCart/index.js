@@ -1,12 +1,17 @@
 const Api = require('apifm-wxapi')
 const CONFIG = require('../../config')
-import {sendNotice} from '../../utils/index'
+import {sendNotice, getStorageSync} from '../../utils/index'
 const APP = getApp()
 
 Page({
   data: {
     shoppingCarInfo: {},
-    token: wx.getStorageSync('token')
+    token: wx.getStorageSync('token'),
+    show: false
+  },
+  onLoad(){
+    const {show} = getStorageSync('userInfo')
+    this.setData({show})
   },
   onShow() {
     this.getShippingCarInfo()

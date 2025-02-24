@@ -11,7 +11,7 @@ Page({
   // 获取功能列表
   getFeats() {
     wx.request({
-      url: `${CONFIG.host}/api/voucher`,
+      url: `${CONFIG.host}/api/wx/voucher`,
       success: ({data}) => {
         this.setData({vouchers: data})
       },

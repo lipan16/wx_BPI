@@ -30,7 +30,7 @@ export const getStorageSync = key => {
  */
 export const sendNotice = ({auth, userOpenId, id, money, time, title, remark}) => {
   wx.request({
-    url: `${CONFIG.host}/api/notice`,
+    url: `${CONFIG.host}/api/wx/notice`,
     method: 'POST',
     data: {auth, userOpenId, id, money: `${money}元`, time, title, remark},
     success: ({data}) => {

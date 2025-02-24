@@ -33,7 +33,7 @@ Page({
   // 获取功能列表
   getFeats() {
     wx.request({
-      url: `${CONFIG.host}/api/feat`,
+      url: `${CONFIG.host}/api/wx/feat`,
       success: ({data}) => {
         this.setData({feats: data})
       }

@@ -51,11 +51,11 @@ Page({
       const {code} = await wx.login();
       // 发送到后端进行登录验证
       wx.request({
-        url: `${CONFIG.host}/api/login?code=${code}`,
+        url: `${CONFIG.host}/api/wx/login?code=${code}`,
         success: ({data}) => {
           wx.showLoading({title: JSON.stringify(data), mask: true});
-          const openId = data.token
-          if(openId !== CONFIG.auth && !CONFIG.openIds.includes(openId)){
+          const {token: openId, show, logined} = data
+          if(!logined){
             wx.showToast({
               title: '非内测用户无法使用',
               icon: 'none',
@@ -64,7 +64,7 @@ Page({
             })
             return
           }
-          app.globalData.userInfo = {...app.globalData.userInfo, openId};
+          app.globalData.userInfo = {...app.globalData.userInfo, openId, show};
           setStorageSync('userInfo', app.globalData.userInfo, 30)
           wx.hideLoading();
           this.goToIndex();
