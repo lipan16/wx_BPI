@@ -63,7 +63,7 @@ Page({
         content: `【${key}】是一个外部地址，是否跳转?`,
         success(res) {
           if (res.confirm) {
-            wx.miniapp.openUrl(key)
+            wx.miniapp.openUrl({url: key})
           }
         }
       })

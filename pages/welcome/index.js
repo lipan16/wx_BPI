@@ -54,7 +54,7 @@ Page({
         url: `${CONFIG.host}/api/wx/login?code=${code}`,
         success: ({data}) => {
           wx.showLoading({title: JSON.stringify(data), mask: true});
-          const {token: openId, show, logined} = data
+          const {token: openId, logined} = data
           if(!logined){
             wx.showToast({
               title: '非内测用户无法使用',
@@ -64,7 +64,7 @@ Page({
             })
             return
           }
-          app.globalData.userInfo = {...app.globalData.userInfo, openId, show};
+          app.globalData.userInfo = {...app.globalData.userInfo, openId};
           setStorageSync('userInfo', app.globalData.userInfo, 30)
           wx.hideLoading();
           this.goToIndex();

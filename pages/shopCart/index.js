@@ -6,12 +6,7 @@ const APP = getApp()
 Page({
   data: {
     shoppingCarInfo: {},
-    token: wx.getStorageSync('token'),
-    show: false
-  },
-  onLoad(){
-    const {show} = getStorageSync('userInfo')
-    this.setData({show})
+    token: wx.getStorageSync('token')
   },
   onShow() {
     this.getShippingCarInfo()

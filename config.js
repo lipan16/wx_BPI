@@ -1,7 +1,7 @@
 module.exports = {
   host: 'http://8.133.162.30',
   appName: '未来可燃冰',
-  version: '1.1.3',
+  version: '1.1.4',
   apiSuccess: 0,
   auth: 'oVeOo5dFxMs7jASDw-6orUoEbbw4', // 所有者
   openIds: ['oVeOo5alZ3LIqFzokXtdLlr42IM0'], // 用户
